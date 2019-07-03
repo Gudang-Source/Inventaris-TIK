@@ -3,8 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 	public function index()
 	{
-		//$Email = $this->session->userdata('Email');
+		$Email = $this->session->userdata('Email');
 		$data['title'] = "Inventaris TIK | Masuk";
+		if(!empty($Email))
+		{
+			redirect('Beranda');
+		}
 		$this->load->view('tampilan_login', $data);
 	}
 

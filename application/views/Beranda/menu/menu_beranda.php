@@ -4,7 +4,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo base_url() ?>assets/foto_profil/avatar5.png" class="img-circle" alt="User Image">
+        <img src="<?php echo base_url() ?>assets/foto_profil/avatar.png" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
          <p>Administrator</p>

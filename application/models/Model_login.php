@@ -5,45 +5,17 @@ class Model_login extends CI_model {
 	public function getlogin($u,$p)
 	{
 		$pwd = md5($p);
-		$this->db->where('email',$u);
-		$this->db->where('password',$pwd);
-		$query = $this->db->get('mahasiswa');
+		$this->db->where('email_user',$u);
+		$this->db->where('pass_user',$pwd);
+		$query = $this->db->get('user');
 		if($query->num_rows()>0)
 		{
 			foreach ($query->result() as $row)
 			{
-				$sess = array('Email'	=> $row->Email,
-							  'password'	=> $row->password);
+				$sess = array('Email'	=> $row->email_user,
+							  'password'	=> $row->pass_user);
 				$this->session->set_userdata($sess);
-				redirect('BerandaMhs');
-			}
-		}
-		$pwdosen = md5($p);
-		$this->db->where('EmailDosen',$u);
-		$this->db->where('password',$pwdosen);
-		$query2 = $this->db->get('dosen');
-		if($query2->num_rows()>0)
-		{
-			foreach ($query2->result() as $row)
-			{
-				$sess = array('EmailDosen'	=> $row->EmailDosen,
-							  'password'	=> $row->password);
-				$this->session->set_userdata($sess);
-				redirect('BerandaDosen');
-			}
-		}
-		$pwkoor = md5($p);
-		$this->db->where('EmailKoor', $u);
-		$this->db->where('password', $pwkoor);
-		$query3 = $this->db->get('koordinator');
-		if($query3->num_rows()>0)
-		{
-			foreach ($query3->result() as $row)
-			{
-				$sess = array('EmailKoor'	=> $row->EmailKoor,
-							  'password'	=> $row->password);
-				$this->session->set_userdata($sess);
-				redirect('BerandaKoor');
+				redirect('Beranda');
 			}
 		}
 		else

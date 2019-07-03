@@ -19,21 +19,21 @@
           </div>
 
           <label for="Inputnamabrg" class="col-sm-2 control-label">Nama Barang</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="Inputnamabrg" name="Nama_brg" required>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="Inputnamabrg" name="Nama_brg" placeholder="Nama" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputMerkbrg" class="col-sm-2 control-label">Merk Barang</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputMerkbrg" name="Merk_brg" required>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="inputMerkbrg" name="Merk_brg" placeholder="Merk" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputTipe" class="col-sm-2 control-label">Tipe Barang</label>
-          <div class="col-sm-9">
+          <div class="col-sm-8">
             <select class="form-control select2 select2-hidden-accessible" name="JK" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
               <option selected="selected">--<!--<?php echo $nama->tipe; ?>--></option>
               <option value=' '>Tipe 1</option>
@@ -44,35 +44,43 @@
 
         <div class="form-group">
           <label for="inputversi" class="col-sm-2 control-label">Versi</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputversi" required>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="inputversi" placeholder="Versi" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputumur" class="col-sm-2 control-label">Umur Barang Efektif</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputUmur"required>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="inputUmur" placeholder="Satuan Bulan" required>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputWaktu" class="col-sm-2 control-label">Waktu Barang Masuk</label>
-          <div class="col-sm-9">
-            <input type="datetime" class="form-control" id="inputWaktu" required>
+          <label for="inputWaktu" class="col-sm-2 control-label">Tanggal Barang Masuk</label>
+          <div class="col-sm-8">
+            <div class="input-group date">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+            <input type="text" class="form-control pull-right" id="datepicker" placeholder="dd/mm/yyy" required>
+          </div>
           </div>
         </div>
 
         <div class="form-group">
-          <label for="inputJumlah" class="col-sm-2 control-label">Jumlah</label>
-          <div class="col-sm-9">
-            <input type="text" class="form-control" id="inputJumlah" required>
+          <div class="col-sm-offset-2 col-sm-8">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Data yang saya input Sudah Benar
+              </label>
+            </div>
           </div>
         </div>
 
         <div class="form-group">
-          <div class="col-sm-offset-10 col-sm-2">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-next"></i>&nbsp&nbspNext</button>
+          <div class="col-sm-offset-2 col-sm-8">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp&nbspSimpan</button>
           </div>
         </div>
       </form>

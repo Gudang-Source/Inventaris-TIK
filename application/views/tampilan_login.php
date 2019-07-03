@@ -70,7 +70,7 @@
              	    }
              	}
              	.item:nth-child(1) {
-             	    background: url(<?php base_url() ?>assets/bglogin/1.JPG) no-repeat center center fixed;
+             	    background: url(<?php base_url() ?>assets/bglogin/1.jpg) no-repeat center center fixed;
              	    -webkit-background-size: cover;
              	    -moz-background-size: cover;
              	    -o-background-size: cover;
@@ -91,7 +91,7 @@
              	    background-size: cover;
              	}
              	.item:nth-child(4) {
-             	    background: url(<?php base_url() ?>assets/bglogin/4.jpg) no-repeat center center fixed;
+             	    background: url(<?php base_url() ?>assets/bglogin/4.png) no-repeat center center fixed;
              	    -webkit-background-size: cover;
              	    -moz-background-size: cover;
              	    -o-background-size: cover;
@@ -105,7 +105,7 @@
              	    background-size: cover;
              	}
              	.item:nth-child(6) {
-             	    background: url(<?php base_url() ?>assets/bglogin/6.jpg) no-repeat center center fixed;
+             	    background: url(<?php base_url() ?>assets/bglogin/6.png) no-repeat center center fixed;
              	    -webkit-background-size: cover;
              	    -moz-background-size: cover;
              	    -o-background-size: cover;
