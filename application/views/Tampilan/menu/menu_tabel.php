@@ -13,9 +13,17 @@
     </div>
     <!-- ini menu side bar -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="active">
+      <li>
         <a href="<?php echo base_url() ?>Beranda">
           <i class="fa fa-home"></i> <span>Beranda</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="active">
+        <a href="<?php echo base_url() ?>Table">
+          <i class="fa fa-table"></i> <span>Data Table</span>
         </a>
       </li>
     </ul>

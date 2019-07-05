@@ -9,7 +9,7 @@
          <p>Tambah Barang Baru</p>
        </div>
        <div class="icon">
-         <i class="ion ion-plus"></i>
+         <i class="fa fa-plus-circle"></i>
        </div>
        <a href="<?php echo base_url() ?>Add" class="small-box-footer">Tambahkan Barang <i class="fa fa-arrow-circle-right"></i></a>
      </div>
@@ -23,7 +23,7 @@
          <p>Edit Tipe Barang</p>
        </div>
        <div class="icon">
-         <i class="ion ion-edit"></i>
+         <i class="fa fa-edit"></i>
        </div>
        <a href="<?php echo base_url() ?>Edit" class="small-box-footer">Edit Tipe <i class="fa fa-arrow-circle-right"></i></a>
      </div>
@@ -33,7 +33,7 @@
     <div class="box box-warning">
        <div class="box-header">
            <i class="fa fa-paperclip" aria-hidden="true"></i>
-           <h3 class="box-title text-center">Data Barang</h3>
+           <h3 class="box-title text-center">Data Tabel Master</h3>
        </div>
        <table class="table table-bordered table-hover datatable" id="example2" role="grid">
          <thead>
@@ -43,29 +43,36 @@
           <th>Tipe Barang</th>
           <th>Merk Barang</th>
           <th>Versi Barang</th>
-          <th>SN</th>
-          <th>Kondisi Barang</th>
           <th>Umur Efektif Barang</th>
-          <th>Lokasi Barang</th>
-          <th>Detail</th>
+          <th>Tanggal Masuk</th>
+          <th> </th>
          </tr>
        </thead>
         <?php foreach ($data->result() as  $row) {
           // code...
          ?>
         <tbody>
-         <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_profil/<?php echo $row->foto_brg;?>" width="100%"></center></td>
-         <td><?php echo $row->nama_brg;?></td>
+         <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" width="100%"></center></td>
+         <td><?php echo $row->nama_master;?></td>
          <td><?php echo $row->nama_tipe;?></td>
-         <td><?php echo $row->merk_brg;?></td>
-         <td><?php echo $row->versi_brg;?></td>
-         <td><?php echo $row->SN;?></td>
-         <td><?php echo $row->kondisi?></td>
-         <td><?php echo $row->umur_brg;?> Bulan</td>
-         <td><?php echo $row->lokasi;?></td>
-         <td><label class=""><a href="#">Lihat</label><i class="fa fa-arrow-circle-right">
-         </i>
-         </a>
+         <td><?php echo $row->merk_master;?></td>
+         <td><?php echo $row->versi_master;?></td>
+         <td><?php echo $row->umur_master;?> Bulan</td>
+         <td><?php echo $row->tanggal_master;?></td>
+         <td>
+           <div class="btn-group">
+             <button class="btn btn-info" type="button">Edit</button>
+             <button class="btn btn-info dropdown-toggle" aria-expanded="false" type="button" data-toggle="dropdown">
+               <span class="caret"></span>
+             </span class="sr-only"></span>
+           </button>
+           <ul class="dropdown-menu" role="menu">
+             <li><a href="#">Tambah</a></li>
+             <li><a href="#">Hapus</a></li>
+           </ul>
+         </div>
+           <!--<label class="label label-"><a href="#"><i class="fa fa-plus-circle"> Tambah Data</label></i>
+         </a>-->
          </td>
         <?php } ?>
         </tbody></table>

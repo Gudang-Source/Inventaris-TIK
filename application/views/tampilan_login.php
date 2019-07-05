@@ -127,7 +127,7 @@
              	  color: #FFF;
              	}
           </style>
-          <script type="text/javascript">
+          <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
           	$('#mybgcarousel').carousel({interval: 2000});
           	$('#myCarousel').carousel({interval: 500});
           </script>
@@ -159,7 +159,7 @@
 					<div class="col-md-7 col-sm-7" style="color: #fff;">
 						<blockquote>
 							<h1 style="color: #fff"><strong>SI Inventaris TIK </strong></h1>
-							<p>Selamat Datang di Sistem Informasi Tugas Akhir GEOFISIKA ITERA.</p>
+							<p>Selamat Datang di Sistem Informasi Inventaris TIK ITERA.</p>
 						  	<footer style="color: #fff">Administrator</footer>
 						</blockquote>
 					</div>

@@ -7,6 +7,9 @@
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Tambah Barang Baru</h3>
        </div>
+       <?php foreach ($data->result() as $nama ) {
+         ?>
+         <?php }?>
        <form class="form-horizontal" action="<?php echo base_url(); ?>Add/adddata" method="post" enctype="multipart/form-data">
 				<div class="form-group">
           <div class="form-group">
@@ -20,24 +23,24 @@
 
           <label for="Inputnamabrg" class="col-sm-2 control-label">Nama Barang</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="Inputnamabrg" name="Nama_brg" placeholder="Nama" required>
+            <input type="text" class="form-control" id="Inputnamabrg" name="namabrg" placeholder="Nama" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputMerkbrg" class="col-sm-2 control-label">Merk Barang</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="inputMerkbrg" name="Merk_brg" placeholder="Merk" required>
+            <input type="text" class="form-control" id="inputMerkbrg" name="merkbrg" placeholder="Merk" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputTipe" class="col-sm-2 control-label">Tipe Barang</label>
           <div class="col-sm-8">
-            <select class="form-control select2 select2-hidden-accessible" name="JK" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-              <option selected="selected">--<!--<?php echo $nama->tipe; ?>--></option>
-              <option value=' '>Tipe 1</option>
-              <option value=' '>Tipe 2</option>
+            <select class="form-control select2 select2-hidden-accessible" name="tipebrg" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+              <option selected="selected">--</option>
+              <option value='1'>Baru</option>
+              <option value='2'>Lama</option>
             </select>
           </div>
         </div>
@@ -45,14 +48,14 @@
         <div class="form-group">
           <label for="inputversi" class="col-sm-2 control-label">Versi</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="inputversi" placeholder="Versi" required>
+            <input type="text" class="form-control" id="inputversi" name="versi" placeholder="Versi" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputumur" class="col-sm-2 control-label">Umur Barang Efektif</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="inputUmur" placeholder="Satuan Bulan" required>
+            <input type="text" class="form-control" id="inputUmur" name="umurbrg" placeholder="Satuan Bulan" required>
           </div>
         </div>
 
@@ -63,7 +66,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-            <input type="text" class="form-control pull-right" id="datepicker" placeholder="dd/mm/yyy" required>
+            <input type="text" class="form-control pull-right" id="datepicker" name="tgglbrg" placeholder="dd/mm/yyy" required>
           </div>
           </div>
         </div>

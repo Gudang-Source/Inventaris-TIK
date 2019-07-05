@@ -3,32 +3,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Profil extends CI_Controller {
 	public function index()
 	{
-		//$this->model_keamanan->getkeamanan();
-		//$email_login = $this->session->userdata('Email');
-		$isi['konten'] = 'Beranda/konten_profil';
+		$this->model_keamanan->getkeamanan();
+		$email_login = $this->session->userdata('Email');
+		$isi['konten'] = 'Tampilan/konten_profil';
 		$isi['judul'] = 'Proifl';
 		$isi['Welcome'] = 'Profil';
 		$isi['sub_judul'] = '';
-		$isi['menu'] = "Beranda/menu/menu_profil";
+		$isi['menu'] = "Tampilan/menu/menu_profil";
 		$isi['title'] = "Inventaris TIK | Profil";
 		//$isi['untuk_menu']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
 		//$isi['data']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
-		$this->load->view('Beranda/tampilan_beranda',$isi);
+		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
 	public function ubahsandi()
 	{
 		//$this->model_keamanan->getkeamanan();
 		//$email_login = $this->session->userdata('Email');
-		$isi['konten'] = 'Beranda/konten_profil_ubahsandi';
+		$isi['konten'] = 'Tampilan/konten_profil_ubahsandi';
 		$isi['judul'] = 'Proifl';
 		$isi['Welcome'] = 'Profil';
 		$isi['sub_judul'] = '';
-		$isi['menu'] = "Beranda/menu/menu_profil";
+		$isi['menu'] = "Tampilan/menu/menu_profil";
 		$isi['title'] = "Inventaris TIK | Profil";
 		//$isi['untuk_menu']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
 		//$isi['data']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
-		$this->load->view('Beranda/tampilan_beranda',$isi);
+		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
 

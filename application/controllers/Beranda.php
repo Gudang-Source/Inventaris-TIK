@@ -5,15 +5,15 @@ class Beranda extends CI_Controller {
 	{
 		$this->model_keamanan->getkeamanan();
 		$email_login = $this->session->userdata('Email');
-		$isi['konten'] = 'Beranda/konten_beranda';
+		$isi['konten'] = 'Tampilan/konten_beranda';
 		$isi['judul'] = 'Beranda';
 		$isi['Welcome'] = 'Beranda';
 		$isi['sub_judul'] = '';
 		$isi['title'] = "Inventaris TIK | Dashboard";
-		$isi['menu'] = "Beranda/menu/menu_beranda";
+		$isi['menu'] = "Tampilan/menu/menu_beranda";
 		$this->load->model('model_table');
-		$isi['data']		= $this->model_table->getdatatable();
-		$this->load->view('Beranda/tampilan_beranda',$isi);
+		$isi['data']		= $this->model_table->getdatatablemaster();
+		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
 	public function logout()
