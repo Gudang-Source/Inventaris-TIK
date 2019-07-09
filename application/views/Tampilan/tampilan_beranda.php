@@ -20,7 +20,7 @@
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
 <style type="text/css">
             #latarbelakang {
-                background-image: url('http://localhost/Inventaris-TIK/assets/dist/img/bacground.jpg');
+                background-image: url('http://localhost:8080/Inventaris-TIK/assets/dist/img/bacground.jpg');
                 background-repeat: repeat;
             }
         </style>
