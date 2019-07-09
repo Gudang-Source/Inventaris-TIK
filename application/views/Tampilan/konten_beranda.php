@@ -44,7 +44,6 @@
           <th>Merk Barang</th>
           <th>Versi Barang</th>
           <th>Umur Efektif Barang</th>
-          <th>Tanggal Masuk</th>
           <th> </th>
          </tr>
        </thead>
@@ -58,7 +57,6 @@
          <td><?php echo $row->merk_master;?></td>
          <td><?php echo $row->versi_master;?></td>
          <td><?php echo $row->umur_master;?> Bulan</td>
-         <td><?php echo $row->tanggal_master;?></td>
          <td>
            <div class="btn-group">
              <button class="btn btn-info" type="button">Edit</button>
@@ -67,7 +65,7 @@
              </span class="sr-only"></span>
            </button>
            <ul class="dropdown-menu" role="menu">
-             <li><a href="#">Tambah</a></li>
+             <li><a href="<?php echo base_url() ?>Add/addbarang/<?php echo $row->id_master;?>">Tambah</a></li>
              <li><a href="#">Hapus</a></li>
            </ul>
          </div>

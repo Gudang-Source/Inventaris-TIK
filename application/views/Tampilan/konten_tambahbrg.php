@@ -59,7 +59,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <!--<div class="form-group">
           <label for="inputWaktu" class="col-sm-2 control-label">Tanggal Barang Masuk</label>
           <div class="col-sm-8">
             <div class="input-group date">
@@ -69,7 +69,7 @@
             <input type="text" class="form-control pull-right" id="datepicker" name="tgglbrg" placeholder="dd/mm/yyy" required>
           </div>
           </div>
-        </div>
+        </div>-->
 
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-8">

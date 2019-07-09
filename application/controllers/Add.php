@@ -45,5 +45,19 @@ class Add extends CI_Controller {
 			}
 		}
 	}
+	public function addbarang($id_master)
+	{
+		$this->model_keamanan->getkeamanan();
+		$email_login = $this->session->userdata('Email');
+		$isi['konten'] = 'Tampilan/konten_addbarang';
+		$isi['judul'] = 'Tambah';
+		$isi['Welcome'] = 'Tambah Barang';
+		$isi['sub_judul'] = '';
+		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
+		$isi['title'] = "Inventaris TIK | Add Barang";
+		$this->load->model('model_table');
+		$isi['data']		= $this->model_table->getdatamaster($id_master);
+		$this->load->view('Tampilan/tampilan_beranda',$isi);
+	}
 
 }
