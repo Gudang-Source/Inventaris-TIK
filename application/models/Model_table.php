@@ -22,6 +22,11 @@ class Model_table extends CI_model {
     return $data;
   }
 
+  public function deletedatamaster($id_master){
+    $this->db->where('id_master', $id_master);
+    $this->db->delete('tabel_master');
+  }
+
   public function insertdatatable($gambar){
     $data = array('nama_master'     => $this->input->post('namabrg'),
                   'merk_master'     => $this->input->post('merkbrg'),

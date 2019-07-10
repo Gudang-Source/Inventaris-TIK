@@ -2,21 +2,20 @@
  <div class="row">
    <!-- ./col -->
    <div class="col-xs-12">
-    <div class="box box-warning">
-       <div class="box-header">
+    <div class="box">
+       <div class="box-header with-border">
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Tambah Barang Baru</h3>
        </div>
        <?php foreach ($data->result() as $row ) {
          ?>
          <?php }?>
-       <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
-				<div class="form-group">
-          <div class="form-group">
-              <input type="text" name="oldfile" value="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" hidden>
-          </div>
-        </div>
+         <div class="box-body">
+       <form class="form" action="#" method="post" enctype="multipart/form-data">
+         <input type="text" name="oldfile" value="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" hidden>
 
+        <div class="row">
+          <div class="col-md-10">
             <div class="form-group">
               <label for="Inputnamabrg" class="col-sm-2 control-label">Nama Barang</label>
               <div class="col-sm-4">
@@ -24,9 +23,10 @@
             </div>
           </div>
 
-            <div class="form-group">
-              <label for="inputMerkbrg" class="col-sm-2 control-label">Merk Barang</label>
-              <div class="col-sm-4">
+
+          <div class="form-group">
+            <label for="inputMerkbrg" class="col-sm-2 control-label">Merk Barang</label>
+            <div class="col-sm-4">
               <input type="text" class="form-control" id="inputMerkbrg" name="merkbrg" readonly value="<?php echo $row->merk_master; ?>">
             </div>
           </div>
@@ -51,13 +51,19 @@
             <input type="text" class="form-control" id="inputUmur" name="umurbrg" readonly value="<?php echo $row->umur_master; ?> Bulan">
           </div>
         </div>
+      </div>
+    </div>
 
+      <div class="row">
+        <div class="col-sm-offset-5 col-sm-10">
         <div class="form-group">
-          <label for="inputumur" class="col-sm-2 control-label">Umur Barang Efektif</label>
-          <div class="col-sm-offset-8 col-sm-4">
-            <input type="text" class="form-control" id="inputUmur" name="umurbrg" placeholder="Satuan Bulan" required>
+          <label for="inputumur" class="col-sm-2 control-label">SN</label>
+          <div class="col-sm-4">
+            <input type="text" class="form-control" id="inputUmur" name="umurbrg" placeholder="SN" required>
           </div>
         </div>
+      </div>
+      </div>
 
         <div class="form-group">
           <div class="col-sm-offset-10 col-sm-2">
@@ -65,10 +71,10 @@
           </div>
         </div>
       </form>
-      <div class="box-body">
-      </div>
       <!-- /.box-body-->
        </div>
+       <!-- /.box-->
+     </div>
    </div>
  </div>
    </section>

@@ -21,8 +21,9 @@
           <th>Detail</th>
          </tr>
        </thead>
-        <?php foreach ($data->result() as  $row) {
-          // code...
+        <?php
+        if (!empty($data)) {
+          foreach ($data->result() as  $row) {
          ?>
         <tbody>
          <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_profil/<?php echo $row->foto_brg;?>" width="100%"></center></td>
@@ -34,12 +35,17 @@
          <td><?php echo $row->kondisi?></td>
          <td><?php echo $row->umur_brg;?> Bulan</td>
          <td><?php echo $row->lokasi;?></td>
-         <td><label class=""><a href="#">Lihat</label><i class="fa fa-arrow-circle-right">
+         <td><a href="#" class="btn btn-success fa fa-arrow-circle-right">Lihat<i class="fa fa-arrow-circle-right">
          </i>
          </a>
          </td>
-        <?php } ?>
-        </tbody></table>
+       <?php } ?>
+        </tbody>
+              <?php }
+              else {
+                echo "Data Kosong";
+              } ?>
+      </table>
        </div>
    </div>
  </div>

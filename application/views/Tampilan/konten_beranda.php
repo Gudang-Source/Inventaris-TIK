@@ -29,12 +29,18 @@
      </div>
    </div>
    <!-- ./col -->
+
    <div class="col-xs-12">
-    <div class="box box-warning">
-       <div class="box-header">
+     <div class="box">
+       <div class="box-header with-border">
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Data Tabel Master</h3>
+           <div class="box-tools pull-right">
+             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+             </button>
+           </div>
        </div>
+       <div class="box-body">
        <table class="table table-bordered table-hover datatable" id="example2" role="grid">
          <thead>
          <tr>
@@ -47,10 +53,10 @@
           <th> </th>
          </tr>
        </thead>
-        <?php foreach ($data->result() as  $row) {
-          // code...
-         ?>
-        <tbody>
+       <?php
+       if (!empty($data)) :
+         foreach ($data->result() as  $row) {
+        ?>
          <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" width="100%"></center></td>
          <td><?php echo $row->nama_master;?></td>
          <td><?php echo $row->nama_tipe;?></td>
@@ -65,16 +71,18 @@
              </span class="sr-only"></span>
            </button>
            <ul class="dropdown-menu" role="menu">
-             <li><a href="<?php echo base_url() ?>Add/addbarang/<?php echo $row->id_master;?>">Tambah</a></li>
-             <li><a href="#">Hapus</a></li>
+             <li><a href="<?php echo base_url() ?>Edit/tambah/<?php echo $row->id_master;?>">Tambah</a></li>
+             <li><a href="<?php echo base_url() ?>Edit/hapus/<?php echo $row->id_master;?>" onclick="return confirm('Hapus data ini?...')">Hapus</a></li>
            </ul>
          </div>
-           <!--<label class="label label-"><a href="#"><i class="fa fa-plus-circle"> Tambah Data</label></i>
-         </a>-->
          </td>
-        <?php } ?>
-        </tbody></table>
+       <?php } ?>
+        </tbody>
+      </table>
+    <?php endif; ?>
+    <!--<center><?php echo "Data Kosong"; ?></center>-->
        </div>
+     </div>
    </div>
  </div>
    </section>

@@ -2,14 +2,15 @@
  <div class="row">
    <!-- ./col -->
    <div class="col-xs-12">
-    <div class="box box-warning">
-       <div class="box-header">
+    <div class="box">
+       <div class="box-header with-border">
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Tambah Barang Baru</h3>
        </div>
        <?php foreach ($data->result() as $nama ) {
          ?>
          <?php }?>
+         <div class="box-body">
        <form class="form-horizontal" action="<?php echo base_url(); ?>Add/adddata" method="post" enctype="multipart/form-data">
 				<div class="form-group">
           <div class="form-group">
@@ -87,10 +88,9 @@
           </div>
         </div>
       </form>
-      <div class="box-body">
-      </div>
       <!-- /.box-body-->
        </div>
+     </div>
    </div>
  </div>
    </section>
