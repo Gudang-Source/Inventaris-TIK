@@ -32,6 +32,13 @@
 
    <div class="col-xs-12">
      <div class="box">
+       <?php
+       $info = $this->session->flashdata('info');
+       if(!empty($info))
+       {
+        echo $info;
+       }
+       ?>
        <div class="box-header with-border">
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Data Tabel Master</h3>
@@ -54,7 +61,6 @@
          </tr>
        </thead>
        <?php
-       if (!empty($data)) :
          foreach ($data->result() as  $row) {
         ?>
          <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" width="100%"></center></td>
@@ -76,11 +82,9 @@
            </ul>
          </div>
          </td>
-       <?php } ?>
         </tbody>
+      <?php } ?>
       </table>
-    <?php endif; ?>
-    <!--<center><?php echo "Data Kosong"; ?></center>-->
        </div>
      </div>
    </div>

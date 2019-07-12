@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_table extends CI_model {
 
   public function getdatatable(){
-    return $this->db->query('SELECT * FROM barang NATURAL JOIN kategori_brg NATURAL JOIN log_barang');
+    return $this->db->query('SELECT * FROM barang NATURAL JOIN kategori_brg');
   }
 
   public function getdatatablemaster(){
@@ -27,7 +27,7 @@ class Model_table extends CI_model {
     $this->db->delete('tabel_master');
   }
 
-  public function insertdatatable($gambar){
+  public function insertdatatablemaster($gambar){
     $data = array('nama_master'     => $this->input->post('namabrg'),
                   'merk_master'     => $this->input->post('merkbrg'),
                   'id_tipe'         => $this->input->post('tipebrg'),
@@ -36,6 +36,21 @@ class Model_table extends CI_model {
                   'foto_master'     => $gambar
                 );
     $this->db->insert('tabel_master', $data);
+  }
+
+  public function insertdatatable(){
+    $data = array('nama_brg'      => $this->input->post('namabrg'),
+                  'merk_brg'       => $this->input->post('merkbrg'),
+                  'id_tipe'        => $this->input->post('tipe_brg'),
+                  'versi_brg'      => $this->input->post('versibrg'),
+                  'SN'             => $this->input->post('sn_brg'),
+                  'umur_brg'       => $this->input->post('umurbrg'),
+                  'foto_brg'       => $this->input->post('gmbrbrg'),
+                  'kondisi_brg'    => $this->input->post('kondisibrg'),
+                  'lokasi_brg'     => $this->input->post('lokasibrg'),
+                  'tanggal_masuk'  => $this->input->post('tanggalbrg')
+                );
+    $this->db->insert('barang', $data);
   }
 
 }

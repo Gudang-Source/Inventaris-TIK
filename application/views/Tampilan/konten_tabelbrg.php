@@ -22,29 +22,24 @@
          </tr>
        </thead>
         <?php
-        if (!empty($data)) {
           foreach ($data->result() as  $row) {
          ?>
         <tbody>
-         <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_profil/<?php echo $row->foto_brg;?>" width="100%"></center></td>
+         <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_brg;?>" width="100%"></center></td>
          <td><?php echo $row->nama_brg;?></td>
          <td><?php echo $row->nama_tipe;?></td>
          <td><?php echo $row->merk_brg;?></td>
          <td><?php echo $row->versi_brg;?></td>
          <td><?php echo $row->SN;?></td>
-         <td><?php echo $row->kondisi?></td>
+         <td><?php echo $row->kondisi_brg?></td>
          <td><?php echo $row->umur_brg;?> Bulan</td>
-         <td><?php echo $row->lokasi;?></td>
-         <td><a href="#" class="btn btn-success fa fa-arrow-circle-right">Lihat<i class="fa fa-arrow-circle-right">
+         <td><?php echo $row->lokasi_brg;?></td>
+         <td><a href="#" class="btn btn-success">Lihat&nbsp&nbsp<i class="fa fa-arrow-circle-right">
          </i>
          </a>
          </td>
        <?php } ?>
         </tbody>
-              <?php }
-              else {
-                echo "Data Kosong";
-              } ?>
       </table>
        </div>
    </div>

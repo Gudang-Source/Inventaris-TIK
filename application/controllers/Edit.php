@@ -21,7 +21,25 @@ class Edit extends CI_Controller {
     $email_login = $this->session->userdata('Email');
     $this->load->model('model_table');
     $this->model_table->deletedatamaster($id_master);
-    redirect('Beranda');  
+    $this->session->set_flashdata('info',
+        '<div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Success!</h4>
+                        Data Berhasil Di Hapus.
+                      </div>');
+    redirect('Beranda');
+
+  }
+  public function tambahbarang(){
+    		$this->model_keamanan->getkeamanan();
+        $this->Model_table->insertdatatable();
+        $this->session->set_flashdata('info',
+  					'<div class="alert alert-success alert-dismissible">
+  					                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  					                <h4><i class="icon fa fa-ban"></i> Success!</h4>
+  					                Data Berhasil Ditambah. Untuk melihat barang klik <a href="Table">disini</a>
+  					              </div>');
+  			redirect('Beranda');
 
   }
 }

@@ -7,12 +7,11 @@
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Tambah Barang Baru</h3>
        </div>
-       <?php foreach ($data->result() as $row ) {
-         ?>
-         <?php }?>
+       <?php foreach ($data->result() as $row ) { ?>
          <div class="box-body">
-       <form class="form" action="#" method="post" enctype="multipart/form-data">
-         <input type="text" name="oldfile" value="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" hidden>
+       <form class="form" action="<?php echo base_url();?>Edit/tambahbarang" method="post" enctype="multipart/form-data">
+         <input type="text" name="gmbrbrg" value="<?php echo $row->foto_master;?>" hidden>
+         <input type="text" name="tipe_brg" value="<?php echo $row->id_tipe;?>" hidden>
 
           <div class="row">
             <div class="col-md-6">
@@ -27,7 +26,7 @@
           <div class="form-group">
             <br><label for="inputMerkbrg" class="col-sm-4 control-label">SN</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputMerkbrg" name="sn" placeholder="SN" required></br>
+              <input type="text" class="form-control" id="inputMerkbrg" name="sn_brg" placeholder="SN" required></br>
             </div>
           </div>
         </div>
@@ -44,13 +43,14 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="inputversi" class="col-sm-4 control-label">Kondisi</label>
+              <label for="inputkondisi" class="col-sm-4 control-label">Kondisi</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" id="inputversi" name="versi" placeholder="Versi" required></br>
-              </div>
+                <input type="radio" id="optionsRadios1" name="kondisibrg" value="Bagus" checked/>&nbsp&nbspBagus
+                &nbsp&nbsp&nbsp&nbsp<input type="radio" id="optionsRadios2" name="kondisibrg" value="Rusak"/>&nbsp&nbspRusak<br></br>
             </div>
           </div>
         </div>
+      </div>
 
         <div class="row">
           <div class="col-md-6">
@@ -65,7 +65,7 @@
             <div class="form-group">
               <label for="inputlokasi" class="col-sm-4 control-label">Lokasi</label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" id="inputlokasi" name="lokasi" placeholder="Lokasi" required></br>
+                <input type="text" class="form-control" id="inputlokasi" name="lokasibrg" placeholder="Lokasi" required></br>
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
           <div class="form-group">
             <label for="inputversi" class="col-sm-4 control-label">Versi</label>
             <div class="col-sm-7">
-              <input type="text" class="form-control" id="inputversi" name="versi" readonly value="<?php echo $row->versi_master; ?>"></br>
+              <input type="text" class="form-control" id="inputversi" name="versibrg" readonly value="<?php echo $row->versi_master; ?>"></br>
             </div>
           </div>
       </div>
@@ -119,4 +119,5 @@
      </div>
    </div>
  </div>
+ <?php }?>
    </section>
