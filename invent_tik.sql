@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2019 at 09:54 AM
+-- Generation Time: Jul 15, 2019 at 09:33 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -36,8 +36,26 @@ CREATE TABLE `barang` (
   `versi_brg` varchar(30) DEFAULT NULL,
   `SN` varchar(35) DEFAULT NULL,
   `umur_brg` varchar(15) DEFAULT NULL,
-  `foto_brg` varchar(35) DEFAULT NULL
+  `kondisi_brg` enum('--','Bagus','Rusak') NOT NULL DEFAULT '--',
+  `lokasi_brg` varchar(35) DEFAULT NULL,
+  `tanggal_masuk` varchar(20) DEFAULT NULL,
+  `foto_brg` varchar(50) DEFAULT NULL,
+  `ket` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`id_brg`, `nama_brg`, `merk_brg`, `id_tipe`, `versi_brg`, `SN`, `umur_brg`, `kondisi_brg`, `lokasi_brg`, `tanggal_masuk`, `foto_brg`, `ket`) VALUES
+(4, 'barang 2', 'lama', 1, 'versi lama', '1234567890ads', '24 Bulan', 'Rusak', 'Gd.GKU', '13-07-2019', '504220181130035748-5c0227ff12ae944b.jpg', NULL),
+(5, 'barang 2', 'lama', 1, 'versi lama', '123456789qwerty', '24 Bulan', 'Bagus', 'Gd. labtek', '13-07-2019', '504220181130035748-5c0227ff12ae944b.jpg', NULL),
+(6, 'barang 2', 'lama', 1, 'versi lama', '123456789qwerty123', '24 Bulan', 'Bagus', 'Gd. labtek', '13-07-2019', '504220181130035748-5c0227ff12ae944b.jpg', NULL),
+(7, 'barang 2', 'lama', 1, 'versi lama', '1234567890asd123', '24 Bulan', 'Bagus', 'Gd. labtek', '13-07-2019', '504220181130035748-5c0227ff12ae944b.jpg', NULL),
+(8, 'barang 2', 'lama', 1, 'versi lama', '1234567890adseaa', '24 Bulan', 'Bagus', 'Gd. labtek', '13-07-2019', '504220181130035748-5c0227ff12ae944b.jpg', NULL),
+(9, 'Meja', 'lama', 2, 'versi lama', 'asd123fgh456', '24 Bulan', 'Bagus', 'Gd. labtek', '15-07-2019', '16699771.jpg', NULL),
+(10, 'kursi', 'baru', 1, 'versi baru', 'jkl789123asd', '24 Bulan', 'Bagus', 'Gd. labtek', '15-07-2019', 'Kursi-Lipat-Futura.jpg', NULL),
+(11, 'kursi lipat', 'lama', 2, 'versi lama', 'asdfghjkl123', '12 Bulan', 'Bagus', 'Gd. labtek', '15-07-2019', 'Kursi-Lipat.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -61,21 +79,6 @@ INSERT INTO `kategori_brg` (`id_tipe`, `nama_tipe`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log_barang`
---
-
-CREATE TABLE `log_barang` (
-  `id_brg` int(5) NOT NULL,
-  `tanggal_masuk` varchar(16) DEFAULT NULL,
-  `kondisi_brg` enum('--','Bagus','Rusak') NOT NULL DEFAULT '--',
-  `lokasi_brg` varchar(50) DEFAULT NULL,
-  `ket_brg` varchar(80) DEFAULT NULL,
-  `nama_penerima` varchar(35) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tabel_master`
 --
 
@@ -88,13 +91,6 @@ CREATE TABLE `tabel_master` (
   `umur_master` varchar(15) DEFAULT NULL,
   `foto_master` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tabel_master`
---
-
-INSERT INTO `tabel_master` (`id_master`, `nama_master`, `merk_master`, `id_tipe`, `versi_master`, `umur_master`, `foto_master`) VALUES
-(2, 'barang 1', 'baru', 1, 'versi baru', '12', 'Screenshot_(1)1.png');
 
 -- --------------------------------------------------------
 
@@ -114,7 +110,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `email_user`, `pass_user`) VALUES
-(1, 'Administrator', 'admin@tik.itera.ac.id', '21232f297a57a5a743894a0e4a801fc3');
+(1, 'Admin', 'admin@tik.itera.ac.id', '21232f297a57a5a743894a0e4a801fc3');
 
 --
 -- Indexes for dumped tables
@@ -131,12 +127,6 @@ ALTER TABLE `barang`
 --
 ALTER TABLE `kategori_brg`
   ADD PRIMARY KEY (`id_tipe`);
-
---
--- Indexes for table `log_barang`
---
-ALTER TABLE `log_barang`
-  ADD KEY `id_brg` (`id_brg`);
 
 --
 -- Indexes for table `tabel_master`
@@ -159,13 +149,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_brg` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_brg` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tabel_master`
 --
 ALTER TABLE `tabel_master`
-  MODIFY `id_master` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_master` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -176,12 +166,6 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `log_barang`
---
-ALTER TABLE `log_barang`
-  ADD CONSTRAINT `log_barang_ibfk_1` FOREIGN KEY (`id_brg`) REFERENCES `barang` (`id_brg`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tabel_master`
