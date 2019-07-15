@@ -23,7 +23,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="active">
         <a href="<?php echo base_url() ?>Table">
-          <i class="fa fa-table"></i> <span>Data Table</span>
+          <i class="fa fa-table"></i> <span>Data Barang</span>
         </a>
       </li>
     </ul>

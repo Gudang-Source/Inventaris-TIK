@@ -61,8 +61,8 @@
          </tr>
        </thead>
        <?php
-         foreach ($data->result() as  $row) {
-        ?>
+       if(!empty($data)) {
+         foreach ($data->result() as  $row) : ?>
          <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" width="100%"></center></td>
          <td><?php echo $row->nama_master;?></td>
          <td><?php echo $row->nama_tipe;?></td>
@@ -83,8 +83,12 @@
          </div>
          </td>
         </tbody>
-      <?php } ?>
+      <?php endforeach ?>
       </table>
+    <?php }
+    else { ?>
+      <tr><td align="center">Tidak Ada Data</td></tr>
+    <?php } ?>
        </div>
      </div>
    </div>
