@@ -7,9 +7,6 @@
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Tambah Barang Baru</h3>
        </div>
-       <?php foreach ($data->result() as $nama ) {
-         ?>
-         <?php }?>
          <div class="box-body">
        <form class="form-horizontal" action="<?php echo base_url(); ?>Add/adddata" method="post" enctype="multipart/form-data">
 				<div class="form-group">
@@ -39,9 +36,9 @@
           <label for="inputTipe" class="col-sm-2 control-label">Tipe Barang</label>
           <div class="col-sm-8">
             <select class="form-control select2 select2-hidden-accessible" name="tipebrg" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
-              <option selected="selected">--</option>
-              <option value='1'>Baru</option>
-              <option value='2'>Lama</option>
+              <option value="">Pilih</option>
+              <?php foreach ($data->result() as $tipe ) {
+              echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
             </select>
           </div>
         </div>

@@ -52,5 +52,8 @@ class Model_table extends CI_model {
                 );
     $this->db->insert('barang', $data);
   }
+  public function gettabletipe(){
+    return $this->db->get('kategori_brg');
+  }
 
 }
