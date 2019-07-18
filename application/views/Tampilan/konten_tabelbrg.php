@@ -6,7 +6,16 @@
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Data Barang</h3>
        </div>
-       <table class="table table-bordered table-hover datatable" id="example2" role="grid">
+       <div class="box-body">
+         <div class="col-md-offset-10">
+          <label class="control-label">Tipe Barang :</label>
+           <select class="form-control" id="tipe_brg">
+             <option value="0">Show All</option>
+             <?php foreach ($data->result() as $tipe ) {
+             echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
+           </select>
+         </div><br></br>
+       <table class="table table-bordered table-hover datatable" id="tabel_barang" role="grid">
          <thead>
          <tr>
           <th>Foto</th>
@@ -14,10 +23,7 @@
           <th>Tipe Barang</th>
           <th>Merk Barang</th>
           <th>Versi Barang</th>
-          <th>SN</th>
           <th>Kondisi Barang</th>
-          <th>Umur Efektif Barang</th>
-          <th>Lokasi Barang</th>
           <th>Detail</th>
          </tr>
        </thead>
@@ -30,10 +36,7 @@
          <td><?php echo $row->nama_tipe;?></td>
          <td><?php echo $row->merk_brg;?></td>
          <td><?php echo $row->versi_brg;?></td>
-         <td><?php echo $row->SN;?></td>
          <td><?php echo $row->kondisi_brg?></td>
-         <td><?php echo $row->umur_brg;?> Bulan</td>
-         <td><?php echo $row->lokasi_brg;?></td>
          <td><a href="#" class="btn btn-success">Lihat&nbsp&nbsp<i class="fa fa-arrow-circle-right">
          </i>
          </a>
@@ -41,6 +44,7 @@
        <?php } ?>
         </tbody>
       </table>
+    </div>
        </div>
    </div>
  </div>

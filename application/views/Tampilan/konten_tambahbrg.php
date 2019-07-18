@@ -35,11 +35,18 @@
         <div class="form-group">
           <label for="inputTipe" class="col-sm-2 control-label">Tipe Barang</label>
           <div class="col-sm-8">
+            <div class="row">
+              <div class="col-sm-10">
             <select class="form-control select2 select2-hidden-accessible" name="tipebrg" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
               <option value="">Pilih</option>
               <?php foreach ($data->result() as $tipe ) {
               echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
             </select>
+          </div>
+          <div class="col-sm-offset-2">
+            <a href="#modal_tambah" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah</a><br></br>
+          </div>
+        </div>
           </div>
         </div>
 

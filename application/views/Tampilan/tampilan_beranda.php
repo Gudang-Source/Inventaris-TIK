@@ -101,7 +101,61 @@
     <?php $this->load->view($konten); ?>
     <!-- /.konten -->
   </div>
-
+  <div class="modal fade" id="modal_edit" style="display: none;">
+ <div class="modal-dialog">
+  <div class="modal-content">
+   <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">×</span></button>
+     <h4 class="modal-title">Edit Tipe</h4>
+    </div>
+    <form class="form-horizontal">
+    <div class="modal-body">
+       <div class="row">
+         <label for="inputTipe" class="col-sm-2 control-label">Nama Tipe Baru</label>
+         <div class="col-sm-9">
+           <input type="text" class="form-control" name="namatipe" placeholder="Nama Tipe Baru" required>
+         </div>
+       </div>
+    </div>
+    <br></br>
+    <div class="modal-footer">
+     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
+     <button type="button" class="btn btn-success" id="btn_simpan"><i class="fa fa-save"></i>&nbsp&nbspSimpan</button>
+    </div>
+   </div>
+   <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+ </div>
+ <div class="modal fade" id="modal_tambah" style="display: none;">
+<div class="modal-dialog">
+ <div class="modal-content">
+  <div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">×</span></button>
+    <h4 class="modal-title">Tambah Tipe</h4>
+   </div>
+   <div class="modal-body">
+    <form class="form-horizontal">
+      <div class="row">
+        <label for="inputTipe" class="col-sm-2 control-label">Nama Tipe</label>
+        <div class="col-sm-9">
+        <input type="text" class="form-control" name="namatipe" placeholder="Nama Tipe" required>
+      </div>
+    </div>
+    <br></br>
+   <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
+    <button type="button" class="btn btn-success" id="btn_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah</button>
+   </div>
+ </form>
+ </div>
+  </div>
+  <!-- /.modal-content -->
+ </div>
+ <!-- /.modal-dialog -->
+</div>
   <!-- /.content-wrapper -->
   <div class="control-sidebar-bg"></div>
   <footer class="main-footer">
