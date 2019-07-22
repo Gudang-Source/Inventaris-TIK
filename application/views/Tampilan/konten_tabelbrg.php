@@ -37,7 +37,7 @@
          <td><?php echo $row->merk_brg;?></td>
          <td><?php echo $row->versi_brg;?></td>
          <td><?php echo $row->kondisi_brg?></td>
-         <td><a href="#" class="btn btn-success">Lihat&nbsp&nbsp<i class="fa fa-arrow-circle-right">
+         <td><a href="<?php base_url() ?>Table/detail/<?php echo $row->id_brg;?>" class="btn btn-success">Lihat&nbsp&nbsp<i class="fa fa-arrow-circle-right">
          </i>
          </a>
          </td>

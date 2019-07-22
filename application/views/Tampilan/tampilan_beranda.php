@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/dropify/dropify.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/custom.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/gambar/favicon.png">
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
@@ -112,17 +113,20 @@
     <form class="form-horizontal">
     <div class="modal-body">
        <div class="row">
-         <label for="inputTipe" class="col-sm-2 control-label">Nama Tipe Baru</label>
+         <div class="col-sm-2">
+         <label for="inputTipe" class="control-label">Nama Tipe Baru</label>
+       </div>
          <div class="col-sm-9">
-           <input type="text" class="form-control" name="namatipe" placeholder="Nama Tipe Baru" required>
+           <input type="hidden" name="idtipe" id="textid" value="">
+           <input type="text" class="form-control" name="namatipebaru" id="nama_tipe_baru" placeholder="Nama Tipe Baru">
          </div>
        </div>
     </div>
-    <br></br>
     <div class="modal-footer">
      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
-     <button type="button" class="btn btn-success" id="btn_simpan"><i class="fa fa-save"></i>&nbsp&nbspSimpan</button>
+     <button class="btn btn-success" id="btn_simpan"><i class="fa fa-save"></i>&nbsp&nbspSimpan</button>
     </div>
+  </form>
    </div>
    <!-- /.modal-content -->
   </div>
@@ -135,26 +139,51 @@
    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true">×</span></button>
     <h4 class="modal-title">Tambah Tipe</h4>
-   </div>
+  </div>
+  <form class="form-horizontal">
    <div class="modal-body">
-    <form class="form-horizontal">
       <div class="row">
-        <label for="inputTipe" class="col-sm-2 control-label">Nama Tipe</label>
-        <div class="col-sm-9">
-        <input type="text" class="form-control" name="namatipe" placeholder="Nama Tipe" required>
+        <div class="col-sm-2">
+        <label for="inputTipe" class="control-label">Nama Tipe</label>
+      </div>
+        <div class="col-sm-8">
+        <input type="text" class="form-control" name="namatipe" id="nama_tipe" placeholder="Nama Tipe">
       </div>
     </div>
-    <br></br>
+  </div>
    <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
-    <button type="button" class="btn btn-success" id="btn_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah</button>
+    <button class="btn btn-success" id="btn_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah</button>
    </div>
  </form>
- </div>
   </div>
   <!-- /.modal-content -->
  </div>
  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal_hapus" style="display: none;">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+   <span aria-hidden="true">×</span></button>
+   <h4 class="modal-title">Hapus Tipe</h4>
+ </div>
+ <form class="form-horizontal">
+  <div class="modal-body">
+    <input type="hidden" name="kode" id="textkode" value="">
+    <div class="alert alert-warning"><p>Apakah Anda yakin mau menghapus barang ini?</p></div>
+ </div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
+   <button class="btn btn-danger" id="btn_hapus"><i class="fa fa-trash"></i>&nbsp&nbspHapus</button>
+  </div>
+  </form>
+ </div>
+ <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
 </div>
   <!-- /.content-wrapper -->
   <div class="control-sidebar-bg"></div>
@@ -187,6 +216,124 @@
 <!-- bootstrap datepicker -->
 <script src="<?php echo base_url() ?>assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="<?php echo base_url() ?>assets/dropify/dropify.min.js"></script>
+<!-- dataTables -->
+<script src="<?php echo base_url() ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        tampil_data_tipe();   //pemanggilan fungsi tampil tipe.
+
+        $('#data_tipe').dataTable();
+
+        //fungsi tampil tipe
+        function tampil_data_tipe(){
+            $.ajax({
+                type  : 'ajax',
+                url   : '<?php echo base_url()?>Edit/get_tipe',
+                async : false,
+                dataType : 'json',
+                success : function(data){
+                    var html = '';
+                    var i;
+                    var no=1;
+                    for(i=0; i<data.length; i++){
+                        html += '<tr>'+
+                                '<td>'+no+'</td>'+
+                                '<td>'+data[i].nama_tipe+'</td>'+
+                                '<td style="text-align:center;">'+
+                                  '<a href="javascript:;" class="btn btn-info btn-xs item_edit" data="'+data[i].id_tipe+'"><i class="fa fa-edit"></i>&nbsp&nbspEdit</a>'+' '+
+                                  '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_tipe+'"><i class="fa fa-trash"></i>&nbsp&nbspHapus</a>'+
+                                '</td>'+
+                                '</tr>';
+                                no++;
+                    }
+                    $('#show_tipe').html(html);
+                }
+
+            });
+        }
+
+        //GET UPDATE
+        $('#show_tipe').on('click','.item_edit',function(){
+            var id=$(this).attr('data');
+            $.ajax({
+                type : "GET",
+                url  : '<?php echo base_url()?>edit/gettipekode',
+                dataType : 'json',
+                data : {id:id},
+                success: function(data){
+                    $.each(data,function(id_tipe, nama_tipe){
+                        $('#modal_edit').modal('show');
+                        $('[name="namatipebaru"]').val(data.nama_tipe);
+                        $('[name="idtipe"]').val(data.id_tipe);
+                    });
+                }
+            });
+            return false;
+        });
+
+        //GET HAPUS
+        $('#show_tipe').on('click','.item_hapus',function(){
+            var id=$(this).attr('data');
+            $('#modal_hapus').modal('show');
+            $('[name="kode"]').val(id);
+        });
+
+        //Tambah tipe
+        $('#btn_tambah').on('click',function(){
+            var namatipe=$('#nama_tipe').val();
+            $.ajax({
+                type : "POST",
+                url  : "<?php echo base_url('edit/tambah_tipe')?>",
+                dataType : "JSON",
+                data : {namatipe: namatipe},
+                success: function(data){
+                    $('[name="namatipe"]').val("");
+                    $('#modal_tambah').modal('hide');
+                    tampil_data_tipe();
+                }
+            });
+            return false;
+        });
+
+        //Update Barang
+        $('#btn_simpan').on('click',function(){
+          var namatipebaru=$('#nama_tipe_baru').val();
+          var idtipe=$('#textid').val();
+          $.ajax({
+            type : "POST",
+            url  : "<?php echo base_url('edit/update_tipe')?>",
+            dataType : "JSON",
+            data : {namatipebaru: namatipebaru, idtipe: idtipe},
+            success: function(data){
+              $('[name="namatipebaru"]').val("");
+              $('[name="tipebrg"]').val("");
+              $('#modal_edit').modal('hide');
+              tampil_data_tipe();
+            }
+          });
+             return false;
+        });
+
+        //Hapus Barang
+        $('#btn_hapus').on('click',function(){
+            var kode=$('#textkode').val();
+            $.ajax({
+            type : "POST",
+            url  : "<?php echo base_url('edit/delete_tipe')?>",
+            dataType : "JSON",
+            data : {kode: kode},
+            success: function(data){
+                $('#modal_hapus').modal('hide');
+                    tampil_data_tipe();
+                  }
+            });
+                return false;
+            });
+    });
+</script>
+<!-- dropify -->
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.dropify').dropify({
@@ -200,6 +347,7 @@
 	});
 
 </script>
+<!-- Datepicker -->
 <script>
 $('#datepicker').datepicker({
  format: "dd-mm-yyyy",
@@ -207,7 +355,7 @@ $('#datepicker').datepicker({
 })
 </script>
 <script>
-//Timepicker
+// Timepicker
 $('.timepicker').timepicker({
   showInputs: false
 })

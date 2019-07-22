@@ -15,4 +15,19 @@ class Table extends CI_Controller {
 		$isi['data']		= $this->model_table->getdatatable();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
+
+	public function detail($id_brg)
+	{
+		$this->model_keamanan->getkeamanan();
+		$email_login = $this->session->userdata('Email');
+		$isi['konten'] = 'Tampilan/konten_detil';
+		$isi['judul'] = 'Detail';
+		$isi['Welcome'] = 'Detail';
+		$isi['sub_judul'] = 'Detail Barang';
+		$isi['title'] = "Inventaris TIK | Detail";
+		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
+		$this->load->model('model_table');
+		$isi['data']		= $this->model_table->getdatadetail($id_brg);
+		$this->load->view('Tampilan/tampilan_beranda',$isi);
+	}
 }

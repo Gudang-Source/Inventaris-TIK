@@ -6,6 +6,15 @@ class Model_table extends CI_model {
     return $this->db->query('SELECT * FROM barang NATURAL JOIN kategori_brg');
   }
 
+  public function getdatadetail($id_brg){
+    $this->db->select('*');
+    $this->db->from('barang');
+    $this->db->JOIN('kategori_brg', 'barang.id_tipe=kategori_brg.id_tipe');
+    $this->db->where('id_brg',$id_brg);
+    $data = $this->db->get();
+    return $data;
+  }
+
   public function getdatatablemaster(){
     $this->db->select('*');
     $this->db->from('tabel_master');
@@ -53,7 +62,40 @@ class Model_table extends CI_model {
     $this->db->insert('barang', $data);
   }
   public function gettabletipe(){
-    return $this->db->get('kategori_brg');
+    $hasil = $this->db->get('kategori_brg');
+    return $hasil->result();
+  }
+
+  public function insert_tipe($namatipe){
+    $data = array('nama_tipe' => $namatipe );
+    $hasil = $this->db->insert('kategori_brg', $data);
+    return $hasil;
+  }
+
+  public function update_tipe($namatipebaru, $id){
+    return $hasil = $this->db->query("UPDATE kategori_brg SET nama_tipe='$namatipebaru' WHERE id_tipe=$id");
+    // $data = array('nama_tipe' => $namatipebaru );
+    // $this->db->where('id_tipe', $id);
+    // return $hasil=$this->db->Update('kategori_brg', $data);
+  }
+
+  public function hapus_tipe($id){
+    $hasil = $this->db->query("DELETE FROM kategori_brg WHERE id_tipe=$id");
+    return $hasil;
+  }
+
+  public function get_tipe_by_kode($id){
+    $this->db->where('id_tipe', $id);
+    $hsl = $this->db->get('kategori_brg', $id);
+    if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'id_tipe' => $data->id_tipe,
+                    'nama_tipe' => $data->nama_tipe,
+                    );
+            }
+        }
+    return $hasil;
   }
 
 }

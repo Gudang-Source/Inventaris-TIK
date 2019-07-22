@@ -71,14 +71,14 @@
          <td><?php echo $row->umur_master;?> Bulan</td>
          <td>
            <div class="btn-group">
-             <button class="btn btn-info" type="button">Edit</button>
-             <button class="btn btn-info dropdown-toggle" aria-expanded="false" type="button" data-toggle="dropdown">
+             <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Edit</button>
+             <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
                <span class="caret"></span>
              </span class="sr-only"></span>
            </button>
            <ul class="dropdown-menu" role="menu">
-             <li><a href="<?php echo base_url() ?>Edit/tambah/<?php echo $row->id_master;?>">Tambah</a></li>
-             <li><a href="<?php echo base_url() ?>Edit/hapus/<?php echo $row->id_master;?>" onclick="return confirm('Hapus data ini?...')">Hapus</a></li>
+             <li><a href="<?php echo base_url() ?>edit/tambah/<?php echo $row->id_master;?>">Tambah</a></li>
+             <li><a href="<?php echo base_url() ?>edit/hapus/<?php echo $row->id_master;?>" onclick="return confirm('Hapus data ini?...')">Hapus</a></li>
            </ul>
          </div>
          </td>
