@@ -56,7 +56,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="inputTipe" class="col-sm-4 control-label">Tipe Barang</label>
-              <div class="col-sm-5">
+              <div class="col-sm-7">
                 <input type="text" class="form-control" id="inputMerkbrg" name="tipebrg" readonly value="<?php echo $row->nama_tipe; ?>"></br>
               </div>
             </div>
