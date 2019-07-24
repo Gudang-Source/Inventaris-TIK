@@ -185,6 +185,25 @@
 </div>
 <!-- /.modal-dialog -->
 </div>
+
+<div class="modal fade" id="modal_view" style="display: none;">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+   <span aria-hidden="true">×</span></button>
+   <h4 class="modal-title">Detil Barang</h4>
+ </div>
+  <div class="modal-body" id="show_detail">
+ </div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
+  </div>
+ </div>
+ <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
   <!-- /.content-wrapper -->
   <div class="control-sidebar-bg"></div>
   <footer class="main-footer">
@@ -347,6 +366,27 @@
 	});
 
 </script>
+
+<!-- View Detail Barang -->
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.view_data').click(function(){
+      var id_barang = $(this).attr("id");
+
+      $.ajax({
+        type : "POST",
+        url : "<?php echo base_url('table/getbarangkode')?>",
+        data : {id_barang:id_barang},
+        success:function(data){
+          $('#show_detail').html(data);
+          $('#modal_view').modal("show");
+        }
+      });
+
+    });
+  });
+</script>
+
 <!-- Datepicker -->
 <script>
 $('#datepicker').datepicker({

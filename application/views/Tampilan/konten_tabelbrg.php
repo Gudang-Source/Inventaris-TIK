@@ -7,14 +7,14 @@
            <h3 class="box-title text-center">Data Barang</h3>
        </div>
        <div class="box-body">
-         <div class="col-md-offset-10">
-          <label class="control-label">Tipe Barang :</label>
-           <select class="form-control" id="tipe_brg">
-             <option value="0">Show All</option>
-             <?php foreach ($data->result() as $tipe ) {
-             echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
+         <!-- <div class="col-md-offset-10"> -->
+          <!-- <label class="control-label">Tipe Barang :</label> -->
+           <!-- <select class="form-control" id="tipe_brg"> -->
+             <!-- <option value="0">Show All</option> -->
+             <!-- <?php// foreach ($data->result() as $tipe ) {
+             // echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
            </select>
-         </div><br></br>
+         </div><br></br>-->
        <table class="table table-bordered table-hover datatable" id="tabel_barang" role="grid">
          <thead>
          <tr>
@@ -37,9 +37,7 @@
          <td><?php echo $row->merk_brg;?></td>
          <td><?php echo $row->versi_brg;?></td>
          <td><?php echo $row->kondisi_brg?></td>
-         <td><a href="<?php base_url() ?>Table/detail/<?php echo $row->id_brg;?>" class="btn btn-success">Lihat&nbsp&nbsp<i class="fa fa-arrow-circle-right">
-         </i>
-         </a>
+         <td><input type="button" name="view" value="Lihat" class="btn btn-success btn-xs view_data" id="<?php echo $row->id_brg?>">
          </td>
        <?php } ?>
         </tbody>

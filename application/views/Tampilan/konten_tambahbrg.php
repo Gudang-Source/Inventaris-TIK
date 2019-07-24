@@ -44,7 +44,7 @@
             </select>
           </div>
           <div class="col-sm-offset-2">
-            <a href="#modal_tambah" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah</a><br></br>
+            <a href="<?php echo base_url(); ?>Edit"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah</a><br></br>
           </div>
         </div>
           </div>

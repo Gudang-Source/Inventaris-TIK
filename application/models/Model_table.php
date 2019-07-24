@@ -66,6 +66,10 @@ class Model_table extends CI_model {
     return $hasil->result();
   }
 
+  public function getdatatipe(){
+    return $this->db->get('kategori_brg');
+  }
+
   public function insert_tipe($namatipe){
     $data = array('nama_tipe' => $namatipe );
     $hasil = $this->db->insert('kategori_brg', $data);
@@ -96,6 +100,11 @@ class Model_table extends CI_model {
             }
         }
     return $hasil;
+  }
+
+  public function get_barang_by_kode($id){
+    $hsl = $this->db->query("SELECT * FROM barang WHERE id_brg=$id");
+    return $hsl->result();
   }
 
 }

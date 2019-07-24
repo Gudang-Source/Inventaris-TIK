@@ -30,4 +30,50 @@ class Table extends CI_Controller {
 		$isi['data']		= $this->model_table->getdatadetail($id_brg);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
+
+	public function getbarangkode(){
+		$id=$this->input->post('id_barang');
+		$this->load->model('model_table');
+		$data['isi'] = $this->model_table->get_barang_by_kode($id);
+		foreach ($data as $hasil) { ?>
+            <table class="table">
+                <tr>
+                    <td width="30%">Nama Barang</td>
+                    <td width="5%">:</td>
+                    <td><?php echo $hasil[0]->nama_brg; ?></td>
+                </tr>
+                <tr>
+                    <td>SN</td>
+                    <td>:</td>
+                    <td><?php echo $hasil[0]->SN; ?></td>
+                </tr>
+								<tr>
+										<td>Tanggal Masuk Barang</td>
+										<td>:</td>
+										<td><?php echo $hasil[0]->tanggal_masuk; ?></td>
+								</tr>
+                <tr>
+                    <td>Umur Efektif Barang</td>
+                    <td>:</td>
+                    <td><?php echo $hasil[0]->umur_brg; ?></td>
+                </tr>
+								<tr>
+										<td>Kondisi Barang</td>
+										<td>:</td>
+										<td><?php echo $hasil[0]->kondisi_brg; ?></td>
+								</tr>
+								<tr>
+										<td>Lokasi Barang</td>
+										<td>:</td>
+										<td><?php echo $hasil[0]->lokasi_brg; ?></td>
+								</tr>
+								<tr>
+										<td>Keterangan</td>
+										<td>:</td>
+										<td><?php echo $hasil[0]->ket; ?></td>
+								</tr>
+            </table>
+        <?php
+        }
+		}
 }
