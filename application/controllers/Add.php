@@ -37,13 +37,26 @@ class Add extends CI_Controller {
                 <h4><i class="icon fa fa-check"></i> Success</h4>
                 Data Berhasil Di Tambah
               </div>');
-				redirect('Beranda');
+				redirect('Master');
 			}
 			else
 			{
 				echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png|jpeg|bmp";
 			}
 		}
+	}
+
+	public function tambahbarang(){
+				$this->model_keamanan->getkeamanan();
+				$this->Model_table->insertdatatable();
+				$this->session->set_flashdata('info',
+						'<div class="alert alert-success alert-dismissible">
+														<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+														<h4><i class="icon fa fa-check"></i> Success!</h4>
+														Data Berhasil Ditambah. Untuk melihat barang klik <a href="Table">disini</a>
+													</div>');
+				redirect('Master');
+
 	}
 
 }

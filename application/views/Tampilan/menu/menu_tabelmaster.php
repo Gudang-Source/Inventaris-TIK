@@ -29,7 +29,7 @@
     </ul>
 
     <ul class="sidebar-menu" data-widget="tree">
-      <li>
+      <li  class="active">
         <a href="<?php echo base_url() ?>Master">
           <i class="fa fa-table"></i> <span>Data Barang Master</span>
         </a>
@@ -37,7 +37,7 @@
     </ul>
 
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="active">
+      <li>
         <a href="<?php echo base_url() ?>Table">
           <i class="fa fa-table"></i> <span>Data Barang</span>
         </a>

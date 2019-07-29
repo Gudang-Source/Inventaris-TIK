@@ -7,7 +7,7 @@
         <img src="<?php echo base_url() ?>assets/foto_profil/avatar.png" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Administrator</p>
+         <p>Administrator</p>
         <a><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
@@ -21,18 +21,26 @@
     </ul>
 
     <ul class="sidebar-menu" data-widget="tree">
-      <li>
-        <a href="<?php echo base_url() ?>Table">
-          <i class="fa fa-table"></i> <span>Data Barang</span>
+      <li  class="active">
+        <a href="<?php echo base_url() ?>Edit">
+          <i class="fa fa-edit"></i> <span>Edit Tipe</span>
         </a>
       </li>
     </ul>
 
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="active">
-       <a href="<?php echo base_url() ?>Profil">
-         <i class="fa fa-user"></i> <span>Profil</span>
-       </a>
+      <li>
+        <a href="<?php echo base_url() ?>Master">
+          <i class="fa fa-table"></i> <span>Data Barang Master</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="sidebar-menu" data-widget="tree">
+      <li>
+        <a href="<?php echo base_url() ?>Table">
+          <i class="fa fa-table"></i> <span>Data Barang</span>
+        </a>
       </li>
     </ul>
     <!-- akhir dari menu -->

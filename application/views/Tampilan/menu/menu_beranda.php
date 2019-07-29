@@ -22,17 +22,25 @@
 
     <ul class="sidebar-menu" data-widget="tree">
       <li>
-        <a href="<?php echo base_url() ?>Table">
-          <i class="fa fa-table"></i> <span>Data Barang</span>
+        <a href="<?php echo base_url() ?>Edit">
+          <i class="fa fa-edit"></i> <span>Edit Tipe</span>
         </a>
       </li>
     </ul>
 
     <ul class="sidebar-menu" data-widget="tree">
       <li>
-       <a href="<?php echo base_url() ?>Profil">
-         <i class="fa fa-user"></i> <span>Profil</span>
-       </a>
+        <a href="<?php echo base_url() ?>Master">
+          <i class="fa fa-table"></i> <span>Data Barang Master</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="sidebar-menu" data-widget="tree">
+      <li>
+        <a href="<?php echo base_url() ?>Table">
+          <i class="fa fa-table"></i> <span>Data Barang</span>
+        </a>
       </li>
     </ul>
     <!-- akhir dari menu -->

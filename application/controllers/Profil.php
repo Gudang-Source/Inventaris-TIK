@@ -9,25 +9,21 @@ class Profil extends CI_Controller {
 		$isi['judul'] = 'Proifl';
 		$isi['Welcome'] = 'Profil';
 		$isi['sub_judul'] = '';
-		$isi['menu'] = "Tampilan/menu/menu_profil";
+		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
 		$isi['title'] = "Inventaris TIK | Profil";
-		//$isi['untuk_menu']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
-		//$isi['data']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
 	public function ubahsandi()
 	{
-		//$this->model_keamanan->getkeamanan();
-		//$email_login = $this->session->userdata('Email');
+		$this->model_keamanan->getkeamanan();
+		$email_login = $this->session->userdata('Email');
 		$isi['konten'] = 'Tampilan/konten_profil_ubahsandi';
 		$isi['judul'] = 'Proifl';
 		$isi['Welcome'] = 'Profil';
 		$isi['sub_judul'] = '';
-		$isi['menu'] = "Tampilan/menu/menu_profil";
+		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
 		$isi['title'] = "Inventaris TIK | Profil";
-		//$isi['untuk_menu']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
-		//$isi['data']		= $this->db->query("SELECT * FROM mahasiswa WHERE Email='$email_login'");
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 

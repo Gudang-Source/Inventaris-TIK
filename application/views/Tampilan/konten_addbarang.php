@@ -9,7 +9,7 @@
        </div>
        <?php foreach ($data->result() as $row ) { ?>
          <div class="box-body">
-       <form class="form" action="<?php echo base_url();?>Edit/tambahbarang" method="post" enctype="multipart/form-data">
+       <form class="form" action="<?php echo base_url();?>Add/tambahbarang" method="post" enctype="multipart/form-data">
          <input type="text" name="gmbrbrg" value="<?php echo $row->foto_master;?>" hidden>
          <input type="text" name="tipe_brg" value="<?php echo $row->id_tipe;?>" hidden>
 
