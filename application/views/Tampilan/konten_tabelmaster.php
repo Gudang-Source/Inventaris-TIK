@@ -27,7 +27,7 @@
           <th>Merk Barang</th>
           <th>Versi Barang</th>
           <th>Umur Efektif Barang</th>
-          <th> </th>
+          <th>Aksi</th>
          </tr>
        </thead>
        <?php
@@ -41,8 +41,7 @@
          <td><?php echo $row->umur_master;?> Bulan</td>
          <td>
            <div class="btn-group">
-             <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Edit</button>
-             <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+             <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-edit"></i>
                <span class="caret"></span>
              </span class="sr-only"></span>
            </button>

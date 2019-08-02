@@ -12,8 +12,37 @@ class Table extends CI_Controller {
 		$isi['title'] = "Inventaris TIK | Data";
 		$isi['menu'] = "Tampilan/menu/menu_tabel";
 		$this->load->model('model_table');
-		$isi['data']		= $this->model_table->getdatatable();
+		$isi['data'] = $this->model_table->getdatatable();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
+	}
+
+	public function get_barang(){
+		$this->load->model('model_table');
+		$data = $this->model_table->getdatatable();
+		echo json_encode($data);
+	}
+
+	public function edit_barang(){
+		$id=$this->input->post('id');
+		$this->load->model('model_table');
+		$this->model_table->edit_barang($id);
+		$this->session->set_flashdata('info',
+				'<div class="alert alert-success alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h4><i class="icon fa fa-check"></i> Success</h4>
+						Data Berhasil Di Update.
+					</div>');
+		redirect('Table');
+	}
+
+	public function update_barang(){
+		$id=$this->input->post('id_barang');
+		$kondisibaru=$this->input->post('kondisibrg');
+		$lokasibaru=$this->input->post('lokasi_brg');
+		$ketbaru=$this->input->post('textket');
+		$this->load->model('model_table');
+		$data=$this->model_table->update_brg($id, $kondisibaru, $lokasibaru, $ketbaru);
+		echo json_encode($data);
 	}
 
 	public function detail($id_brg)

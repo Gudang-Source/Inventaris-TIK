@@ -3,7 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_table extends CI_model {
 
   public function getdatatable(){
-    return $this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe');
+    $hasil=$this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe');
+    return $hasil->result();
+  }
+
+  // public function get_brg_by_id($id){
+    // $hasil = $this->db->query("SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.id_tipe=$id");
+    // return $hasil->result();
+  // }
+
+  public function update_brg($id, $kondisibaru, $lokasibaru, $ketbaru){
+    return $hasil = $this->db->query("UPDATE barang SET kondisi_brg='$kondisibaru', lokasi_brg='$lokasibaru', ket='$ketbaru' WHERE id_brg=$id");
+  }
+
+  public function edit_barang($id){
+    $data = array('kondisi_brg' => $this->input->post('kondisibrg'),
+                  'lokasi_brg' => $this->input->post('lokasi_brg'),
+                  'ket' => $this->input->post('textket')
+                );
+                $this->db->where('id_brg', $id);
+                $this->db->update('barang', $data);
   }
 
   public function getdatadetail($id_brg){
@@ -75,9 +94,6 @@ class Model_table extends CI_model {
 
   public function update_tipe($namatipebaru, $id){
     return $hasil = $this->db->query("UPDATE kategori_brg SET nama_tipe='$namatipebaru' WHERE id_tipe=$id");
-    // $data = array('nama_tipe' => $namatipebaru );
-    // $this->db->where('id_tipe', $id);
-    // return $hasil=$this->db->Update('kategori_brg', $data);
   }
 
   public function hapus_tipe($id){

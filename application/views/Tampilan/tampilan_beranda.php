@@ -21,7 +21,7 @@
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
 <style type="text/css">
             #latarbelakang {
-                background-image: url('http://localhost:8080/Inventaris-TIK/assets/dist/img/bacground.jpg');
+                background-image: url('http://localhost/Inventaris-TIK/assets/dist/img/bacground.jpg');
                 background-repeat: repeat;
             }
         </style>
@@ -102,6 +102,7 @@
     <?php $this->load->view($konten); ?>
     <!-- /.konten -->
   </div>
+    <!-- /.content-wrapper -->
   <div class="modal fade" id="modal_edit" style="display: none;">
  <div class="modal-dialog">
   <div class="modal-content">
@@ -132,6 +133,7 @@
   </div>
   <!-- /.modal-dialog -->
  </div>
+
  <div class="modal fade" id="modal_tambah" style="display: none;">
 <div class="modal-dialog">
  <div class="modal-content">
@@ -204,7 +206,50 @@
 </div>
 <!-- /.modal-dialog -->
 </div>
-  <!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal_editbarang" style="display: none;">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+   <span aria-hidden="true">×</span></button>
+   <h4 class="modal-title">Edit Barang</h4>
+  </div>
+  <form class="form-horizontal" action="<?php echo base_url() ?>Table/edit_barang" method="post" enctype="multipart/form-data">
+  <div class="modal-body">
+    <input type="hidden" name="id" id="idtext" value="<?php
+      foreach ($data as  $row) {  echo $row->id_brg; }?>">
+    <div class="form-group">
+      <label for="inputMerkbrg" class="col-sm-3">Kondisi Barang</label>
+      <div class="col-sm-8">
+        <input type="radio" id="kondisi1" name="kondisibrg" value="Bagus" checked/>&nbsp&nbspBagus
+        &nbsp&nbsp&nbsp&nbsp<input type="radio" id="kondisi2" name="kondisibrg" value="Rusak"/>&nbsp&nbspRusak
+      </div>
+    </div>
+      <div class="form-group">
+        <label for="inputTipe" class="col-sm-3">Lokasi Barang</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="inputlokasi" name="lokasi_brg">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputTipe" class="col-sm-3">Keterangan</label>
+        <div class="col-sm-8">
+          <textarea style="resize: none; width: 370px; height: 91px;" id="ket" name="textket"></textarea>
+        </div>
+      </div>
+    </div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
+   <button type="submit"class="btn btn-success" id="btn_save"><i class="fa fa-save"></i>&nbsp&nbspSimpan</button>
+  </div>
+</form>
+ </div>
+ <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
   <div class="control-sidebar-bg"></div>
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -367,9 +412,33 @@
 
 </script>
 
-<!-- View Detail Barang -->
+<!-- View Barang -->
 <script type="text/javascript">
   $(document).ready(function(){
+    $('#tabel_barang').DataTable( {
+    initComplete: function () {
+        this.api().columns().every( function () {
+            var column = this;
+            var select = $('<select><option value=""></option></select>')
+                .appendTo( $(column.footer()).empty() )
+                .on( 'change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex(
+                        $(this).val()
+                    );
+
+                    column
+                        .search( val ? '^'+val+'$' : '', true, false )
+                        .draw();
+                } );
+
+            column.data().unique().sort().each( function ( d, j ) {
+                select.append( '<option value="'+d+'">'+d+'</option>' )
+              });
+            });
+          }
+        });
+
+// Detail Barang
     $('.view_data').click(function(){
       var id_barang = $(this).attr("id");
 
@@ -382,8 +451,62 @@
           $('#modal_view').modal("show");
         }
       });
-
     });
+
+// Edit Barang
+    // $('.edit_data').click(function(){
+    //   var id_barang = $(this).attr("id");
+    //
+    //   $.ajax({
+    //     type : "POST",
+    //     url : "<?php echo base_url('table/getbarangkode')?>",
+    //     data : {id_barang:id_barang},
+    //     success:function(data){
+    //       $('#show_detail').html(data);
+    //       $('#modal_editbarang').modal("show");
+    //     }
+    //   });
+    // });
+
+// Simpan Edit barang
+//   $('#btn_save').on('click',function(){
+//     var id_barang = $(this).attr("id");
+//     var kondisibrg=$('#kondisi1').val();
+//     var kondisibrg=$('#kondisi2').val();
+//     var lokasi=$('#inputlokasi').val();
+//     var ket=$('#ket').val();
+//     $.ajax({
+//       type : "POST",
+//       url  : "<?php echo base_url('table/update_barang')?>",
+//       dataType : "JSON",
+//       data : {kondisibrg: kondisibrg, lokasi: lokasi, ket: ket, id_barang: id_barang},
+//       success: function(data){
+//         $('[name="kondisibrg"]').val("");
+//         $('[name="lokasi_brg"]').val("");
+//         $('[name="textket"]').val("");
+//         $('#modal_editbarang').modal('hide');
+//         $('#tabel_barang').DataTable();
+//       }
+//     });
+//      return false;
+// });
+
+    // $('#tipe_brg').on('change', function()
+    //   {
+    //     var tipe_brg = $("#tipe_brg").val();
+    //     $.ajax({
+    //       type:"POST",
+    //       url: "<?php echo base_url('table/get_brg_by_id')?>",
+    //       data: "tipe_brg="+tipe_brg,
+    //       dataType : "html",
+    //       success:function(msg){
+    //         $("#tabel_barang").html(msg);
+    //       },
+    //       error:function(){
+    //         alert("Search failed");
+    //       }
+    //     });
+    //   });
   });
 </script>
 
