@@ -2,8 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_table extends CI_model {
 
-  public function getdatatable(){
+  public function getdatatable($tipe){
+    if($tipe==''){
     $hasil=$this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe');
+  }else{
+    $hasil=$this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.id_tipe='.$tipe);
+  }
     return $hasil->result();
   }
 

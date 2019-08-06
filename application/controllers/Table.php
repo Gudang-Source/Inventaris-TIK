@@ -12,7 +12,8 @@ class Table extends CI_Controller {
 		$isi['title'] = "Inventaris TIK | Data";
 		$isi['menu'] = "Tampilan/menu/menu_tabel";
 		$this->load->model('model_table');
-		$isi['data'] = $this->model_table->getdatatable();
+		$tipe=$this->input->get('tipe');
+		$isi['data'] = $this->model_table->getdatatable($tipe);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 

@@ -20,7 +20,7 @@
          </div>
          <div class="form-group">
            <div class="col-sm-2">
-           <select name="tipe_brg" class="form-control" id="tipe_brg">
+           <select name="tipe_brg" class="form-control" id="tipe">
              <option value="">Show All</option>
              <?php foreach ($data as $tipe ) {
                echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
