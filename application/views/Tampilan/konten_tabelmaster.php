@@ -18,22 +18,21 @@
            </div>
        </div>
        <div class="box-body">
-       <table class="table table-bordered table-hover datatable" id="example2" role="grid">
+      <a href="<?php echo base_url() ?>Add" class="btn btn-primary btn-flat pull-left"> <i class="fa fa-plus-circle"></i>&nbsp&nbspTambah Barang</a><br></br><br></br>
+       <table class="table table-bordered table-hover datatable" id="data_master" role="grid">
          <thead>
          <tr>
-          <th>Foto</th>
-          <th>Nama Barang</th>
-          <th>Tipe Barang</th>
-          <th>Merk Barang</th>
-          <th>Versi Barang</th>
-          <th>Umur Efektif Barang</th>
-          <th>Aksi</th>
+          <th style="text-align: center">Foto</th>
+          <th style="text-align: center">Nama Barang</th>
+          <th style="text-align: center">Tipe Barang</th>
+          <th style="text-align: center">Merk Barang</th>
+          <th style="text-align: center">Versi Barang</th>
+          <th style="text-align: center">Umur Efektif Barang</th>
+          <th style="text-align: center">Aksi</th>
          </tr>
        </thead>
-       <?php
-       if(!empty($data)) {
-         foreach ($data->result() as  $row) : ?>
-         <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" width="100%"></center></td>
+         <tbody id="show_master">
+         <!-- <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_master;?>" width="100%"></center></td>
          <td><?php echo $row->nama_master;?></td>
          <td><?php echo $row->nama_tipe;?></td>
          <td><?php echo $row->merk_master;?></td>
@@ -50,14 +49,9 @@
              <li><a href="<?php echo base_url() ?>Master/hapus/<?php echo $row->id_master;?>" onclick="return confirm('Hapus data ini?...')">Hapus</a></li>
            </ul>
          </div>
-         </td>
+         </td> -->
         </tbody>
-      <?php endforeach ?>
       </table>
-    <?php }
-    else { ?>
-      <tr><td align="center">Tidak Ada Data</td></tr>
-    <?php } ?>
        </div>
      </div>
    </div>

@@ -20,15 +20,15 @@
          </div>
          <div class="form-group">
            <div class="col-sm-2">
-           <select name="tipe_brg" class="form-control" id="tipe">
+           <select name="tipe" id="tipe" class="form-control" onchange="getTipe()">
              <option value="">Show All</option>
-             <?php foreach ($data as $tipe ) {
+             <?php foreach ($tipe as $tipe ) {
                echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
              </select>
            </div>
-           <button type="submit" name="search" value="Cari" class="btn btn-default"><i class="fa fa-search"></i>&nbsp&nbspCari</button>
+           <!-- <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>&nbsp&nbspCari</button> -->
          </div>
-         </form><br></br>
+         </form>
        <table class="table table-bordered table-hover datatable" id="tabel_barang" role="grid">
          <thead>
          <tr>
@@ -41,24 +41,44 @@
           <th>Detail</th>
          </tr>
        </thead>
-         <?php
-           foreach ($data as  $row) {
-          ?>
         <tbody id="show_barang">
-         <td  width="10%"><center><img src="<?php base_url() ?>assets/foto_brg/<?php echo $row->foto_brg;?>" width="100%"></center></td>
-         <td><?php echo $row->nama_brg;?></td>
-         <td><?php echo $row->nama_tipe;?></td>
-         <td><?php echo $row->merk_brg;?></td>
-         <td><?php echo $row->versi_brg;?></td>
-         <td><?php echo $row->kondisi_brg?></td>
-         <td><button type="button" name="view" class="btn btn-success btn-xs view_data" id="<?php echo $row->id_brg?>"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>
-           <button type="button" name="edit" class="btn btn-primary btn-xs edit_data" id="<?php echo $row->id_brg?>" data-toggle="modal" data-target="#modal_editbarang"><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>
-         </td>
-       <?php } ?>
         </tbody>
       </table>
     </div>
        </div>
    </div>
  </div>
-   </section>
+ <script type="text/javascript">
+   function getTipe(){
+     var tipe = $("#tipe").val();
+     $.ajax({
+       type:"POST",
+       url: "<?php echo base_url()?>Table/get_tipe_kode",
+       data: {tipe:tipe},
+       dataType : "json",
+       success:function(data){
+         var html = '';
+         var i;
+         for(i=0; i<data.length; i++){
+             html += '<tr>'+
+                     '<td width="12%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
+                     '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
+                     '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
+                     '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
+                     '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
+                     '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
+                     '<td style="text-align:center;">'+
+                     '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
+                     '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                     '</td>'+
+                     '</tr>';
+         }
+         $('#show_barang').html(html);
+       },
+       error:function(){
+         alert("Search failed");
+       }
+    });
+  }
+ </script>
+</section>

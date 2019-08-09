@@ -8,7 +8,7 @@
            <h3 class="box-title text-center">Tambah Tipe Barang Baru</h3>
        </div>
          <div class="box-body">
-           <button type="button" name="tambah" class="btn btn-primary" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah Tipe</button><br></br>
+           <button type="button" name="tambah" class="btn btn-primary btn-flat" data-toggle="modal" data-target="#modal_tambah"><i class="fa fa-plus-circle"></i>&nbsp&nbspTambah Tipe</button><br></br>
            <table class="table table-bordered table-hover datatable" id="data_tipe" role="grid">
              <thead>
                <tr>
@@ -18,7 +18,7 @@
                </tr>
              </thead>
              <tbody id="show_tipe">
-               
+
              </tbody>
            </table>
       <!-- /.box-body-->

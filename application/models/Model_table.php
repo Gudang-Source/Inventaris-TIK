@@ -3,18 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Model_table extends CI_model {
 
   public function getdatatable($tipe){
-    if($tipe==''){
-    $hasil=$this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe');
-  }else{
+    if(!empty($tipe)){
     $hasil=$this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.id_tipe='.$tipe);
+  }else{
+    $hasil=$this->db->query('SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe');
   }
     return $hasil->result();
   }
-
-  // public function get_brg_by_id($id){
-    // $hasil = $this->db->query("SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.id_tipe=$id");
-    // return $hasil->result();
-  // }
 
   public function update_brg($id, $kondisibaru, $lokasibaru, $ketbaru){
     return $hasil = $this->db->query("UPDATE barang SET kondisi_brg='$kondisibaru', lokasi_brg='$lokasibaru', ket='$ketbaru' WHERE id_brg=$id");
@@ -39,7 +34,8 @@ class Model_table extends CI_model {
   }
 
   public function getdatatablemaster(){
-    return $this->db->query('SELECT * FROM tabel_master LEFT OUTER JOIN kategori_brg ON tabel_master.id_tipe=kategori_brg.id_tipe');
+    $hasil = $this->db->query('SELECT * FROM tabel_master LEFT OUTER JOIN kategori_brg ON tabel_master.id_tipe=kategori_brg.id_tipe');
+    return $hasil->result();
   }
 
   public function getdatamaster($id_master){
@@ -51,8 +47,8 @@ class Model_table extends CI_model {
     return $data;
   }
 
-  public function deletedatamaster($id_master){
-    $this->db->where('id_master', $id_master);
+  public function deletedatamaster($idmaster){
+    $this->db->where('id_master', $idmaster);
     $this->db->delete('tabel_master');
   }
 
@@ -122,6 +118,45 @@ class Model_table extends CI_model {
   public function get_barang_by_kode($id){
     $hsl = $this->db->query("SELECT * FROM barang WHERE id_brg=$id");
     return $hsl->result();
+  }
+
+  public function get_brg_by_kode($id){
+    $this->db->where('id_brg', $id);
+    $hsl = $this->db->get('barang', $id);
+    if($hsl->num_rows()>0){
+            foreach ($hsl->result() as $data) {
+                $hasil=array(
+                    'id_brg' => $data->id_tipe,
+                    'nama_brg' => $data->nama_brg,
+                    'kondisi_brg' => $data->kondisi_brg,
+                    'lokasi_brg' => $data->lokasi_brg,
+                    'ket' => $data->ket,
+                    );
+            }
+        }
+    return $hasil;
+  }
+
+  public function get_jumlah(){
+    return $this->db->count_all_results('barang');
+  }
+  public function get_bagus(){
+    $this->db->count_all_results('barang');
+    $this->db->like('kondisi_brg', 'Bagus');
+    $this->db->from('barang');
+    return $this->db->count_all_results();
+
+  }
+  public function get_rusak(){
+    $this->db->count_all_results('barang');
+    $this->db->like('kondisi_brg', 'Rusak');
+    $this->db->from('barang');
+    return $this->db->count_all_results();
+  }
+
+  public function get_jumlah_brg(){
+    $hasil = $this->db->query("SELECT tanggal_masuk, COUNT(id_brg) AS jumlah FROM `barang` GROUP BY tanggal_masuk");
+    return $hasil;
   }
 
 }

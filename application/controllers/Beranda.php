@@ -13,6 +13,11 @@ class Beranda extends CI_Controller {
 		$isi['menu'] = "Tampilan/menu/menu_beranda";
 		$this->load->model('model_table');
 		$isi['data']		= $this->model_table->getdatatablemaster();
+		$isi['jumlah']		= $this->model_table->get_jumlah();
+		$isi['bagus']		= $this->model_table->get_bagus();
+		$isi['rusak']		= $this->model_table->get_rusak();
+		$data = $this->model_table->get_jumlah_brg()->result();
+		$isi['jumlah_brg']		= json_encode($data);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 

@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/gambar/favicon.png">
+  <!-- Morris Chart -->
+  <script src="<?php echo base_url() ?>assets/morris.js/morris.css"></script>
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
 <style type="text/css">
@@ -207,6 +209,30 @@
 <!-- /.modal-dialog -->
 </div>
 
+<div class="modal fade" id="modal_masterhapus" style="display: none;">
+<div class="modal-dialog">
+<div class="modal-content">
+ <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+   <span aria-hidden="true">×</span></button>
+   <h4 class="modal-title">Hapus Data Master</h4>
+ </div>
+ <form class="form-horizontal" method="post" action="<?php echo base_url() ?>Master/hapus">
+  <div class="modal-body">
+    <input type="hidden" name="id_master" id="kode_master" value="">
+    <div class="alert alert-warning"><p>Apakah Anda yakin mau menghapus barang ini?</p></div>
+ </div>
+  <div class="modal-footer">
+   <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"></i>&nbspTutup</button>
+   <button class="btn btn-danger" id="btn_hps"><i class="fa fa-trash"></i>&nbsp&nbspHapus</button>
+  </div>
+  </form>
+ </div>
+ <!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+
 <div class="modal fade" id="modal_editbarang" style="display: none;">
 <div class="modal-dialog">
 <div class="modal-content">
@@ -217,8 +243,7 @@
   </div>
   <form class="form-horizontal" action="<?php echo base_url() ?>Table/edit_barang" method="post" enctype="multipart/form-data">
   <div class="modal-body">
-    <input type="hidden" name="id" id="idtext" value="<?php
-      foreach ($data as  $row) {  echo $row->id_brg; }?>">
+    <input type="hidden" name="id" id="idtext" value="">
     <div class="form-group">
       <label for="inputMerkbrg" class="col-sm-3">Kondisi Barang</label>
       <div class="col-sm-8">
@@ -229,13 +254,13 @@
       <div class="form-group">
         <label for="inputTipe" class="col-sm-3">Lokasi Barang</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="inputlokasi" name="lokasi_brg">
+          <input type="text" class="form-control" id="inputlokasi" name="lokasi_brg" value="">
         </div>
       </div>
       <div class="form-group">
         <label for="inputTipe" class="col-sm-3">Keterangan</label>
         <div class="col-sm-8">
-          <textarea style="resize: none; width: 370px; height: 91px;" id="ket" name="textket"></textarea>
+          <textarea style="resize: none; width: 370px; height: 91px;" id="ket" name="textket" value=""></textarea>
         </div>
       </div>
     </div>
@@ -279,10 +304,14 @@
 <script src="<?php echo base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="<?php echo base_url() ?>assets/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- dropify -->
 <script src="<?php echo base_url() ?>assets/dropify/dropify.min.js"></script>
 <!-- dataTables -->
 <script src="<?php echo base_url() ?>assets/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url() ?>assets/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- Morris.Js Chart -->
+<script src="<?php echo base_url() ?>assets/morris.js/morris.min.js"></script>
+<script src="<?php echo base_url() ?>assets/raphael/raphael.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -361,7 +390,7 @@
             return false;
         });
 
-        //Update Barang
+        //Update tipe
         $('#btn_simpan').on('click',function(){
           var namatipebaru=$('#nama_tipe_baru').val();
           var idtipe=$('#textid').val();
@@ -380,7 +409,7 @@
              return false;
         });
 
-        //Hapus Barang
+        //Hapus tipe
         $('#btn_hapus').on('click',function(){
             var kode=$('#textkode').val();
             $.ajax({
@@ -414,34 +443,44 @@
 
 <!-- View Barang -->
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#tabel_barang').DataTable( {
-    initComplete: function () {
-        this.api().columns().every( function () {
-            var column = this;
-            var select = $('<select><option value=""></option></select>')
-                .appendTo( $(column.footer()).empty() )
-                .on( 'change', function () {
-                    var val = $.fn.dataTable.util.escapeRegex(
-                        $(this).val()
-                    );
+$(document).ready(function(){
+    tampil_data_barang();   //pemanggilan fungsi tampil tipe.
 
-                    column
-                        .search( val ? '^'+val+'$' : '', true, false )
-                        .draw();
-                } );
+    $('#tabel_barang').dataTable();
 
-            column.data().unique().sort().each( function ( d, j ) {
-                select.append( '<option value="'+d+'">'+d+'</option>' )
-              });
-            });
-          }
+    //fungsi tampil tipe
+    function tampil_data_barang(){
+        $.ajax({
+            type  : 'ajax',
+            url   : "<?php echo base_url('Table/get_barang')?>",
+            async : false,
+            dataType : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    html += '<tr>'+
+                            '<td width="12%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
+                            '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
+                            '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
+                            '<td style="text-align:center;">'+
+                            '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
+                            '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                            '</td>'+
+                            '</tr>';
+                }
+                $('#show_barang').html(html);
+            }
+
         });
+    }
 
 // Detail Barang
-    $('.view_data').click(function(){
+    $('#show_barang').on('click','.view_data',function(){
       var id_barang = $(this).attr("id");
-
       $.ajax({
         type : "POST",
         url : "<?php echo base_url('table/getbarangkode')?>",
@@ -453,60 +492,41 @@
       });
     });
 
-// Edit Barang
-    // $('.edit_data').click(function(){
-    //   var id_barang = $(this).attr("id");
-    //
-    //   $.ajax({
-    //     type : "POST",
-    //     url : "<?php echo base_url('table/getbarangkode')?>",
-    //     data : {id_barang:id_barang},
-    //     success:function(data){
-    //       $('#show_detail').html(data);
-    //       $('#modal_editbarang').modal("show");
-    //     }
-    //   });
+    //GET UPDATE
+    $('#show_barang').on('click','.edit_data',function(){
+        var id=$(this).attr('id');
+        $.ajax({
+            type : "GET",
+            url  : '<?php echo base_url()?>Table/get_barang_kode',
+            dataType : 'json',
+            data : {id:id},
+            success: function(data){
+                $.each(data,function(kondisi_brg, lokasi_brg, ket){
+                    $('#modal_editbarang').modal('show');
+                    $('[name="id"]').val(id);
+                    $('[name="lokasi_brg"]').val(data.lokasi_brg);
+                    $('[name="textket"]').val(data.ket);
+
+                });
+            }
+        });
+        return false;
+    });
+    //  function getTipe(){
+    //    var tipe = $("#tipe").val();
+    //    $.ajax({
+    //      type:"POST",
+    //      url: "<?php echo base_url()?>Table/get_tipe_kode",
+    //      data: {tipe:tipe},
+    //      dataType : "html",
+    //      success:function(msg){
+    //        $('#show_barang').html(msg);
+    //      },
+    //      error:function(){
+    //        alert("Search failed");
+    //      }
     // });
-
-// Simpan Edit barang
-//   $('#btn_save').on('click',function(){
-//     var id_barang = $(this).attr("id");
-//     var kondisibrg=$('#kondisi1').val();
-//     var kondisibrg=$('#kondisi2').val();
-//     var lokasi=$('#inputlokasi').val();
-//     var ket=$('#ket').val();
-//     $.ajax({
-//       type : "POST",
-//       url  : "<?php echo base_url('table/update_barang')?>",
-//       dataType : "JSON",
-//       data : {kondisibrg: kondisibrg, lokasi: lokasi, ket: ket, id_barang: id_barang},
-//       success: function(data){
-//         $('[name="kondisibrg"]').val("");
-//         $('[name="lokasi_brg"]').val("");
-//         $('[name="textket"]').val("");
-//         $('#modal_editbarang').modal('hide');
-//         $('#tabel_barang').DataTable();
-//       }
-//     });
-//      return false;
-// });
-
-    // $('#tipe_brg').on('change', function()
-    //   {
-    //     var tipe_brg = $("#tipe_brg").val();
-    //     $.ajax({
-    //       type:"POST",
-    //       url: "<?php echo base_url('table/get_brg_by_id')?>",
-    //       data: "tipe_brg="+tipe_brg,
-    //       dataType : "html",
-    //       success:function(msg){
-    //         $("#tabel_barang").html(msg);
-    //       },
-    //       error:function(){
-    //         alert("Search failed");
-    //       }
-    //     });
-    //   });
+    // }
   });
 </script>
 
@@ -522,6 +542,113 @@ $('#datepicker').datepicker({
 $('.timepicker').timepicker({
   showInputs: false
 })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        tampil_data_master();   //pemanggilan fungsi tampil tipe.
+
+        $('#data_master').dataTable();
+
+        //fungsi tampil tipe
+        function tampil_data_master(){
+            $.ajax({
+                type  : 'ajax',
+                url   : "<?php echo base_url('Master/get_master')?>",
+                async : false,
+                dataType : 'json',
+                success : function(data){
+                    var html = '';
+                    var i;
+                    for(i=0; i<data.length; i++){
+                        html += '<tr>'+
+                                '<td width="12%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_master+'" width="100%">'+'</td>'+
+                                '<td style="text-align:center;">'+data[i].nama_master+'</td>'+
+                                '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
+                                '<td style="text-align:center;">'+data[i].merk_master+'</td>'+
+                                '<td style="text-align:center;">'+data[i].versi_master+'</td>'+
+                                '<td style="text-align:center;">'+data[i].umur_master+' Bulan</td>'+
+                                '<td style="text-align:center;">'+
+                                '<div class="btn-group">'+
+                                  '<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-edit"></i>'+
+                                  '<span class="caret"></span>'+
+                                  '</span class="sr-only"></span>'+
+                                  '</button>'+
+                                  '<ul class="dropdown-menu" role="menu">'+
+                                  '<li><a href="<?php echo base_url()?>Master/tambah/'+data[i].id_master+'">Tambah</a></li>'+
+                                  '<li><a href="javascript:;" class="btn-md master_hapus" data="'+data[i].id_master+'">Hapus</a>'+
+                                  '</li>'+
+                                  '</ul>'+
+                                  '</div>'+
+                                '</td>'+
+                                '</tr>';
+                    }
+                    $('#show_master').html(html);
+                }
+
+            });
+        }
+
+        //GET HAPUS
+        $('#show_master').on('click','.master_hapus',function(){
+            var id=$(this).attr('data');
+            $('#modal_masterhapus').modal('show');
+            $('[name="id_master"]').val(id);
+        });
+
+      });
+</script>
+
+<script>
+ $(function () {
+   "use strict";
+
+   // AREA CHART
+   var area = new Morris.Area({
+     element: 'area-chart',
+     resize: true,
+     data: <?php echo $jumlah_brg?>,
+     xkey: 'tanggal_masuk',
+     ykeys: ['jumlah'],
+     labels: ['Jumlah'],
+     lineColors: ['#3c8dbc'],
+     hideHover: 'auto'
+   });
+
+   // LINE CHART
+   var line = new Morris.Line({
+     element: 'line-chart',
+     resize: true,
+     data: [
+       {y: '2011 Q1', item1: 2666},
+       {y: '2011 Q2', item1: 2778},
+       {y: '2011 Q3', item1: 4912},
+       {y: '2011 Q4', item1: 3767},
+       {y: '2012 Q1', item1: 6810},
+       {y: '2012 Q2', item1: 5670},
+       {y: '2012 Q3', item1: 4820},
+       {y: '2012 Q4', item1: 15073},
+       {y: '2013 Q1', item1: 10687},
+       {y: '2013 Q2', item1: 8432}
+     ],
+     xkey: 'y',
+     ykeys: ['item1'],
+     labels: ['Item 1'],
+     lineColors: ['#3c8dbc'],
+     hideHover: 'auto'
+   });
+
+   //DONUT CHART
+   var donut = new Morris.Donut({
+     element: 'donut-chart',
+     resize: true,
+     colors: ["#3c8dbc", "#f56954"],
+     data: [
+       {label: "Bagus", value: <?php echo $bagus;?>},
+       {label: "Rusak", value: <?php echo $rusak;?>},
+     ],
+     hideHover: 'auto'
+   });
+ });
 </script>
 </body>
 </html>

@@ -11,11 +11,30 @@ class Master extends CI_Controller {
 		$isi['sub_judul'] = '';
 		$isi['title'] = "Inventaris TIK | Master";
 		$isi['menu'] = "Tampilan/menu/menu_tabelmaster";
-		$this->load->model('model_table');
-		$isi['data']		= $this->model_table->getdatatablemaster();
+		//$isi['data']		= $this->model_table->getdatatablemaster();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
-	
+
+	public function get_master(){
+		$this->load->model('model_table');
+		$data = $this->model_table->getdatatablemaster();
+		echo json_encode($data);
+	}
+
+	public function hapus(){
+		$idmaster=$this->input->post('id_master');
+		$this->load->model('model_table');
+		$data=$this->model_table->deletedatamaster($idmaster);
+		// echo json_encode($data);
+		$this->session->set_flashdata('info',
+				'<div class="alert alert-danger alert-dismissible">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+						<h4><i class="icon fa fa-exclamation-circle"></i> Alert</h4>
+						Data Berhasil Di Hapus
+					</div>');
+		redirect('Master');
+	}
+
 	public function tambah($id_master)
 	{
 		$this->model_keamanan->getkeamanan();
@@ -29,22 +48,6 @@ class Master extends CI_Controller {
 		$this->load->model('model_table');
 		$isi['data']		= $this->model_table->getdatamaster($id_master);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
-	}
-
-	public function hapus($id_master)
-	{
-		$this->model_keamanan->getkeamanan();
-		$email_login = $this->session->userdata('Email');
-		$this->load->model('model_table');
-		$this->model_table->deletedatamaster($id_master);
-		$this->session->set_flashdata('info',
-				'<div class="alert alert-success alert-dismissible">
-												<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-												<h4><i class="icon fa fa-check"></i> Success!</h4>
-												Data Berhasil Di Hapus.
-											</div>');
-		redirect('Master');
-
 	}
 
 }

@@ -14,12 +14,14 @@ class Table extends CI_Controller {
 		$this->load->model('model_table');
 		$tipe=$this->input->get('tipe');
 		$isi['data'] = $this->model_table->getdatatable($tipe);
+		$isi['tipe'] = $this->model_table->gettabletipe();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
 	public function get_barang(){
+		$tipe=$this->input->get('tipe');
 		$this->load->model('model_table');
-		$data = $this->model_table->getdatatable();
+		$data = $this->model_table->getdatatable($tipe);
 		echo json_encode($data);
 	}
 
@@ -34,31 +36,6 @@ class Table extends CI_Controller {
 						Data Berhasil Di Update.
 					</div>');
 		redirect('Table');
-	}
-
-	public function update_barang(){
-		$id=$this->input->post('id_barang');
-		$kondisibaru=$this->input->post('kondisibrg');
-		$lokasibaru=$this->input->post('lokasi_brg');
-		$ketbaru=$this->input->post('textket');
-		$this->load->model('model_table');
-		$data=$this->model_table->update_brg($id, $kondisibaru, $lokasibaru, $ketbaru);
-		echo json_encode($data);
-	}
-
-	public function detail($id_brg)
-	{
-		$this->model_keamanan->getkeamanan();
-		$email_login = $this->session->userdata('Email');
-		$isi['konten'] = 'Tampilan/konten_detil';
-		$isi['judul'] = 'Detail';
-		$isi['Welcome'] = 'Detail';
-		$isi['sub_judul'] = 'Detail Barang';
-		$isi['title'] = "Inventaris TIK | Detail";
-		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
-		$this->load->model('model_table');
-		$isi['data']		= $this->model_table->getdatadetail($id_brg);
-		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
 	public function getbarangkode(){
@@ -105,5 +82,18 @@ class Table extends CI_Controller {
             </table>
         <?php
         }
+		}
+		public function get_barang_kode(){
+			$id=$this->input->get('id');
+			$this->load->model('model_table');
+			$data = $this->model_table->get_brg_by_kode($id);
+			echo json_encode($data);
+		}
+
+		public function get_tipe_kode(){
+			$tipe=$this->input->post('tipe');
+			$this->load->model('model_table');
+			$data = $this->model_table->getdatatable($tipe);
+			echo json_encode($data);
 		}
 }

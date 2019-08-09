@@ -23,7 +23,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li  class="active">
         <a href="<?php echo base_url() ?>Edit">
-          <i class="fa fa-edit"></i> <span>Edit Tipe</span>
+          <i class="fa fa-edit"></i> <span>Master Tipe</span>
         </a>
       </li>
     </ul>
@@ -31,7 +31,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li>
         <a href="<?php echo base_url() ?>Master">
-          <i class="fa fa-table"></i> <span>Data Barang Master</span>
+          <i class="fa fa-table"></i> <span>Barang Master</span>
         </a>
       </li>
     </ul>
