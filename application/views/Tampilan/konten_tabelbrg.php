@@ -38,6 +38,7 @@
           <th>Merk Barang</th>
           <th>Versi Barang</th>
           <th>Kondisi Barang</th>
+          <th>Jumlah</th>
           <th>Detail</th>
          </tr>
        </thead>
@@ -67,6 +68,7 @@
                      '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
                      '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
                      '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
+                     '<td style="text-align:center;">'+data[i].jumlah+'</td>'+
                      '<td style="text-align:center;">'+
                      '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
                      '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
