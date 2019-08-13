@@ -96,4 +96,28 @@ class Table extends CI_Controller {
 			$data = $this->model_table->getdatatable($tipe);
 			echo json_encode($data);
 		}
+
+		public function daftarbarang($nama_brg){
+			$this->model_keamanan->getkeamanan();
+			$email_login = $this->session->userdata('Email');
+			$isi['konten'] = 'Tampilan/konten_tabelbrglainya';
+			$isi['judul'] = 'Data Barang';
+			$isi['Welcome'] = 'Data Barang';
+			$isi['sub_judul'] = '';
+			$isi['title'] = "Inventaris TIK | Barang";
+			$isi['menu'] = "Tampilan/menu/menu_nonaktif";
+			$this->load->model('model_table');
+			$nama=$this->input->get('data');
+			$id=$this->input->get('id');
+			$isi['data'] = $this->model_table->get_daftar_brg($nama_brg);
+			//$isi['data'] = json_encode($data);
+			$this->load->view('Tampilan/tampilan_beranda',$isi);
+		}
+		public function get_daftar_brg($nama_brg){
+			$nama=$this->input->get('data');
+			$id=$this->input->get('id');;
+			$this->load->model('model_table');
+			$data = $this->model_table->get_daftar_brg($nama_brg);
+			echo json_encode($data);
+		}
 }

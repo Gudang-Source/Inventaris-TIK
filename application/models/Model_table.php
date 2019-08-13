@@ -11,6 +11,11 @@ class Model_table extends CI_model {
     return $hasil->result();
   }
 
+  public function get_daftar_brg($nama_brg){
+    $hasil=$this->db->query("SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.nama_brg='$nama_brg'");
+    return $hasil;
+  }
+
   public function update_brg($id, $kondisibaru, $lokasibaru, $ketbaru){
     return $hasil = $this->db->query("UPDATE barang SET kondisi_brg='$kondisibaru', lokasi_brg='$lokasibaru', ket='$ketbaru' WHERE id_brg=$id");
   }

@@ -213,27 +213,6 @@
 						      </div>
 						    </form>
 
-						    <div class="text-center">
-           <p><font color="#1a1816">- Atau -</font></p>
-						    </div>
-						    <div class="row">
-						       <div class="text-center">
-						        <a href="<?php echo base_url();?>Lupapas" class="btn btn-danger">
-						         <i class="fa fa-key"></i>
-						         Lupa Password
-						        </a>
-						       </div>
-						      </div>
-						      <!-- /.col -->
-						      <!--div class="col-xs-4">
-						       <div class="text-right">
-						        <a href="<?php echo base_url();?>Register"  class="btn btn-success">
-						         <i class="fa fa-user"></i>&nbsp
-						         Daftar
-						        </a>
-						       </div>
-                 </div-->
-						      <!-- /.col -->
 						    </div>
 						  </div>
 						  <!-- /.login-box-body -->

@@ -88,7 +88,7 @@
             <div class="input-group-addon">
               <i class="fa fa-calendar"></i>
             </div>
-            <input type="text" class="form-control pull-right" id="datepicker" name="tanggalbrg" placeholder="dd-mm-yyyy" required></br>
+            <input type="text" class="form-control pull-right" id="datepicker" name="tanggalbrg" placeholder="yyyy-mm-dd" required></br>
           </div>
         </div>
         </div>

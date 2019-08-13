@@ -2,7 +2,7 @@
  <div class="row">
    <!-- ./col -->
    <div class="col-xs-12">
-    <div class="box">
+    <div class="box box-danger">
        <div class="box-header with-border">
            <i class="fa fa-paperclip" aria-hidden="true"></i>
            <h3 class="box-title text-center">Tambah Tipe Barang Baru</h3>

@@ -18,52 +18,24 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/gambar/favicon.png">
   <!-- Morris Chart -->
-  <script src="<?php echo base_url() ?>assets/morris.js/morris.css"></script>
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/morris.js/morris.css">
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
-<style type="text/css">
+<!-- <style type="text/css">
             #latarbelakang {
                 background-image: url('http://localhost/Inventaris-TIK/assets/dist/img/bacground.jpg');
                 background-repeat: repeat;
             }
-        </style>
-<body id="latarbelakang" class="latarbelakang hold-transition skin-blue layout-boxed sidebar-mini" style="height: auto; min-height: 100%;">
-<!-- Site wrapper -->
-<div>
- &nbsp
-</div>
-<div class="wrapper">
- <div>
-  &nbsp
- </div>
- <div class="container base">
-  <div class="container">
-      <div class="row ">
-        <div class="col-md-1">
-         <a href="<?php echo base_url() ?>">
-           <img src="<?php echo base_url() ?>assets/dist/img/logo-itera-oke.png" width="70px" style="margin-bottom:10px; ">
-         </a>
-        </div>
-        <div class="col-md-5">
-          <h3>Sistem Informasi Inventaris TIK</h3>
-          <h5>UPT TIK</h5>
-          <p><em>"Institut Teknologi Sumatera"</em></p>
-        </div>
-      </div>
-  </div>
-</div>
- <div>
-  &nbsp
- </div>
-</div>
+        </style> -->
+<body class="hold-transition skin-red-light sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo base_url() ?>" class="logo">
       <!-- jika android / jika di kecilkan -->
-      <span class="logo-mini"><b>TIK</b></span>
+      <span class="logo-mini"><img src="<?php echo base_url() ?>assets/dist/img/logo_itera_bulet_head.png" width="40px" height="40px"></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>SI</b> Inventaris TIK</span>
+      <span class="logo-lg"><img src="<?php echo base_url() ?>assets/dist/img/logo_itera_bulet_head.png" width="40px" height="40px"> Inventaris TIK</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -336,7 +308,7 @@
                                 '<td>'+data[i].nama_tipe+'</td>'+
                                 '<td style="text-align:center;">'+
                                   '<a href="javascript:;" class="btn btn-info btn-xs item_edit" data="'+data[i].id_tipe+'"><i class="fa fa-edit"></i>&nbsp&nbspEdit</a>'+' '+
-                                  '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_tipe+'"><i class="fa fa-trash"></i>&nbsp&nbspHapus</a>'+
+                                  // '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="'+data[i].id_tipe+'"><i class="fa fa-trash"></i>&nbsp&nbspHapus</a>'+
                                 '</td>'+
                                 '</tr>';
                                 no++;
@@ -367,11 +339,11 @@
         });
 
         //GET HAPUS
-        $('#show_tipe').on('click','.item_hapus',function(){
-            var id=$(this).attr('data');
-            $('#modal_hapus').modal('show');
-            $('[name="kode"]').val(id);
-        });
+        // $('#show_tipe').on('click','.item_hapus',function(){
+        //     var id=$(this).attr('data');
+        //     $('#modal_hapus').modal('show');
+        //     $('[name="kode"]').val(id);
+        // });
 
         //Tambah tipe
         $('#btn_tambah').on('click',function(){
@@ -410,20 +382,20 @@
         });
 
         //Hapus tipe
-        $('#btn_hapus').on('click',function(){
-            var kode=$('#textkode').val();
-            $.ajax({
-            type : "POST",
-            url  : "<?php echo base_url('edit/delete_tipe')?>",
-            dataType : "JSON",
-            data : {kode: kode},
-            success: function(data){
-                $('#modal_hapus').modal('hide');
-                    tampil_data_tipe();
-                  }
-            });
-                return false;
-            });
+        // $('#btn_hapus').on('click',function(){
+        //     var kode=$('#textkode').val();
+        //     $.ajax({
+        //     type : "POST",
+        //     url  : "<?php echo base_url('edit/delete_tipe')?>",
+        //     dataType : "JSON",
+        //     data : {kode: kode},
+        //     success: function(data){
+        //         $('#modal_hapus').modal('hide');
+        //             tampil_data_tipe();
+        //           }
+        //     });
+        //         return false;
+        //     });
     });
 </script>
 <!-- dropify -->
@@ -444,6 +416,9 @@
 <!-- View Barang -->
 <script type="text/javascript">
 $(document).ready(function(){
+
+    $('#tabel_brg').dataTable();
+
     tampil_data_barang();   //pemanggilan fungsi tampil tipe.
 
     $('#tabel_barang').dataTable();
@@ -460,7 +435,7 @@ $(document).ready(function(){
                 var i;
                 for(i=0; i<data.length; i++){
                     html += '<tr>'+
-                            '<td width="12%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
+                            '<td width="5%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
                             '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
                             '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
                             '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
@@ -468,8 +443,9 @@ $(document).ready(function(){
                             '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
                             '<td style="text-align:center;">'+data[i].jumlah+'</td>'+
                             '<td style="text-align:center;">'+
-                            '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
-                            '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                            '<a href="<?php echo base_url()?>Table/daftarbarang/'+data[i].nama_brg+'" class="btn btn-primary btn-xs" data="'+data[i].nama_brg+'" id="'+data[i].id_tipe+'">Selengkapnya...</a>'+
+                            // '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
+                            // '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
                             '</td>'+
                             '</tr>';
                 }
@@ -478,6 +454,8 @@ $(document).ready(function(){
 
         });
     }
+
+
 
 // Detail Barang
     $('#show_barang').on('click','.view_data',function(){
@@ -562,7 +540,7 @@ $('.timepicker').timepicker({
                     var i;
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
-                                '<td width="12%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_master+'" width="100%">'+'</td>'+
+                                '<td width="5%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_master+'" width="100%">'+'</td>'+
                                 '<td style="text-align:center;">'+data[i].nama_master+'</td>'+
                                 '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
                                 '<td style="text-align:center;">'+data[i].merk_master+'</td>'+
@@ -602,7 +580,6 @@ $('.timepicker').timepicker({
 <script>
  $(function () {
    "use strict";
-
    // AREA CHART
    var area = new Morris.Area({
      element: 'area-chart',
@@ -614,30 +591,6 @@ $('.timepicker').timepicker({
      lineColors: ['#3c8dbc'],
      hideHover: 'auto'
    });
-
-   // LINE CHART
-   var line = new Morris.Line({
-     element: 'line-chart',
-     resize: true,
-     data: [
-       {y: '2011 Q1', item1: 2666},
-       {y: '2011 Q2', item1: 2778},
-       {y: '2011 Q3', item1: 4912},
-       {y: '2011 Q4', item1: 3767},
-       {y: '2012 Q1', item1: 6810},
-       {y: '2012 Q2', item1: 5670},
-       {y: '2012 Q3', item1: 4820},
-       {y: '2012 Q4', item1: 15073},
-       {y: '2013 Q1', item1: 10687},
-       {y: '2013 Q2', item1: 8432}
-     ],
-     xkey: 'y',
-     ykeys: ['item1'],
-     labels: ['Item 1'],
-     lineColors: ['#3c8dbc'],
-     hideHover: 'auto'
-   });
-
    //DONUT CHART
    var donut = new Morris.Donut({
      element: 'donut-chart',
@@ -651,5 +604,43 @@ $('.timepicker').timepicker({
    });
  });
 </script>
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+    tampil_barang();   //pemanggilan fungsi tampil tipe.
+
+    $('#tabel_brg').dataTable();
+
+    //fungsi tampil tipe
+    function tampil_barang(){
+        $.ajax({
+            type  : 'ajax',
+            url   : "<?php echo base_url('Table/daftarbarang')?>",
+            async : false,
+            dataType : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    html += '<tr>'+
+                            '<td width="5%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
+                            '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
+                            '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].jumlah+'</td>'+
+                            '<td style="text-align:center;">'+
+                            '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
+                            '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                            '</td>'+
+                            '</tr>';
+                }
+                $('#show_brg').html(html);
+            }
+
+        });
+    }
+  });
+</script> -->
 </body>
 </html>

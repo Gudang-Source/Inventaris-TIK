@@ -7,19 +7,15 @@
 								<!-- Profile Image -->
 								<div class="box box-primary">
 										<div class="box-body box-profile">
-												<img class="profile-user-img img-responsive img-circle" src="<?php base_url() ?>assets/foto_profil/avatar.png" alt="User profile picture">
+												<img class="profile-user-img img-responsive img-circle" src="<?php base_url() ?>assets/foto_profil/avatar.svg" alt="User profile picture">
 												<h3 class="profile-username text-center">Administrator</h3>
 										</div>
 										<!-- /.box-body -->
 								</div>
-								<?php
-								$info = $this->session->flashdata('info');
-								if(!empty($info))
-								{
-									echo $info;
-								}
-								?>
 						</div>
+						<?php foreach ($data->result() as $nama) :
+							// code...
+						?>
 						<!-- /.col -->
 						<div class="col-md-9">
 								<div class="nav-tabs-custom">
@@ -33,17 +29,25 @@
 														<tbody>
 															<tr>
 																<td align="left" width='26%'><b>Nama Lengkap</b></td>
-																<td>Administrator<!--<?php echo $nama->Nama_usr; ?>--></td>
+																<td><?php echo $nama->nama; ?></td>
 															</tr>
 															<tr>
 																<td align="left"><b>Email</b></td>
-																<td>-<!--<?php echo $nama->Email; ?>--></td>
+																<td><?php echo $nama->email_user; ?></td>
 															</tr>
 														</tbody>
 													</table>
 												</div>
+											<?php endforeach; ?>
 
 												<div class="tab-pane" id="UbahPassword">
+													<?php
+													$info = $this->session->flashdata('info');
+													if(!empty($info))
+													{
+														echo $info;
+													}
+													?>
 													<form class="form-horizontal" action="<?php echo base_url(); ?>Profil/updatesandi" method="post" enctype="multipart/form-data">
 														<div class="form-group">
 																<label for="inputPassword" class="col-sm-2 control-label">Sandi Sekarang</label>
@@ -54,13 +58,13 @@
 														<div class="form-group">
 																<label for="inputPassword" class="col-sm-2 control-label">Sandi baru</label>
 																<div class="col-sm-10">
-																		<input type="password" class="form-control" id="inputNewPassword" name="NewPassword" placeholder="Kata Sandi Baru" minlength="8" required>
+																		<input type="password" class="form-control" id="inputNewPassword" name="NewPassword" placeholder="Kata Sandi Baru" required>
 																</div>
 														</div>
 														<div class="form-group">
 																<label for="inputPassword" class="col-sm-2 control-label">Ketik ulang sandi baru</label>
 																<div class="col-sm-10">
-																		<input type="password" class="form-control" id="inputAgainNewPassword" name="AgainNewPassword" placeholder="Ulangi kata sandi baru" minlength="8" required>
+																		<input type="password" class="form-control" id="inputAgainNewPassword" name="AgainNewPassword" placeholder="Ulangi kata sandi baru" required>
 																</div>
 														</div>
 															<div class="form-group">
