@@ -32,14 +32,14 @@
        <table class="table table-bordered table-hover datatable" id="tabel_barang" role="grid">
          <thead>
          <tr>
-          <th>Foto</th>
-          <th>Nama Barang</th>
-          <th>Tipe Barang</th>
-          <th>Merk Barang</th>
-          <th>Versi Barang</th>
-          <th>Kondisi Barang</th>
-          <th>Jumlah</th>
-          <th>Detail</th>
+          <th style="text-align:center;" >Foto</th>
+          <th style="text-align:center;">Nama Barang</th>
+          <th style="text-align:center;">Tipe Barang</th>
+          <th style="text-align:center;">Merk Barang</th>
+          <th style="text-align:center;">Versi Barang</th>
+          <th style="text-align:center;">Kondisi Barang</th>
+          <th style="text-align:center;">Jumlah</th>
+          <th style="text-align:center;">Detail</th>
          </tr>
        </thead>
         <tbody id="show_barang">

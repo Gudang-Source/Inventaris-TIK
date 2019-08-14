@@ -443,9 +443,7 @@ $(document).ready(function(){
                             '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
                             '<td style="text-align:center;">'+data[i].jumlah+'</td>'+
                             '<td style="text-align:center;">'+
-                            '<a href="<?php echo base_url()?>Table/daftarbarang/'+data[i].nama_brg+'" class="btn btn-primary btn-xs" data="'+data[i].nama_brg+'" id="'+data[i].id_tipe+'">Selengkapnya...</a>'+
-                            // '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
-                            // '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                            '<a href="<?php echo base_url()?>Table/daftarbarang/'+data[i].id_brg+'/'+data[i].nama_brg+'" class="btn btn-primary btn-xs">Selengkapnya...</a>'+
                             '</td>'+
                             '</tr>';
                 }
@@ -455,10 +453,8 @@ $(document).ready(function(){
         });
     }
 
-
-
 // Detail Barang
-    $('#show_barang').on('click','.view_data',function(){
+    $('.view_data').click(function(){
       var id_barang = $(this).attr("id");
       $.ajax({
         type : "POST",
@@ -472,7 +468,7 @@ $(document).ready(function(){
     });
 
     //GET UPDATE
-    $('#show_barang').on('click','.edit_data',function(){
+    $('.edit_data').click(function(){
         var id=$(this).attr('id');
         $.ajax({
             type : "GET",

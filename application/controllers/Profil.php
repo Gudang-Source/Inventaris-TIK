@@ -16,22 +16,6 @@ class Profil extends CI_Controller {
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
-	public function ubahsandi()
-	{
-		$this->model_keamanan->getkeamanan();
-		$email_login = $this->session->userdata('Email');
-		$isi['konten'] = 'Tampilan/konten_profil_ubahsandi';
-		$isi['judul'] = 'Proifl';
-		$isi['Welcome'] = 'Profil';
-		$isi['sub_judul'] = '';
-		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
-		$isi['title'] = "Inventaris TIK | Profil";
-		$this->load->model('model_login');
-		$isi['data'] = $this->model_login->getdatauser();
-		$this->load->view('Tampilan/tampilan_beranda',$isi);
-	}
-
-
 	function updatesandi() {
 		$email_login = $this->session->userdata('Email');
 		$id_login = $this->session->userdata('id_user');

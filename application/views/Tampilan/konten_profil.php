@@ -3,28 +3,27 @@
 
 				<div class="row">
 						<div class="col-md-3">
-
+							<?php foreach ($data->result() as $nama) :
+								// code...
+							?>
 								<!-- Profile Image -->
 								<div class="box box-primary">
 										<div class="box-body box-profile">
 												<img class="profile-user-img img-responsive img-circle" src="<?php base_url() ?>assets/foto_profil/avatar.svg" alt="User profile picture">
-												<h3 class="profile-username text-center">Administrator</h3>
+												<h3 class="profile-username text-center"><?php echo $nama->nama; ?></h3>
 										</div>
 										<!-- /.box-body -->
 								</div>
 						</div>
-						<?php foreach ($data->result() as $nama) :
-							// code...
-						?>
 						<!-- /.col -->
 						<div class="col-md-9">
 								<div class="nav-tabs-custom">
 										<ul class="nav nav-tabs">
-												<li class="active"><a href="#DataAdmin" data-toggle="tab">Data Admin</a></li>
-												<li><a href="#UbahPassword" data-toggle="tab">Ubah Kata Sandi</a></li>
+												<!-- <li class="active"><a href="#DataAdmin" data-toggle="tab">Data Admin</a></li> -->
+												<li class="active"><a href="#UbahPassword" data-toggle="tab">Ubah Kata Sandi</a></li>
 										</ul>
 										<div class="tab-content">
-												<div class="active tab-pane" id="DataAdmin">
+												<!-- <div class="active tab-pane" id="DataAdmin">
 													<table width="100%" class="table table-striped table-bordered table-hover dataTable" id="dataTables-example">
 														<tbody>
 															<tr>
@@ -38,9 +37,9 @@
 														</tbody>
 													</table>
 												</div>
-											<?php endforeach; ?>
+											<?php endforeach; ?> -->
 
-												<div class="tab-pane" id="UbahPassword">
+												<div class="active tab-pane" id="UbahPassword">
 													<?php
 													$info = $this->session->flashdata('info');
 													if(!empty($info))

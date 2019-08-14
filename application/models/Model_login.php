@@ -46,7 +46,7 @@ class Model_login extends CI_model {
 								                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
 								                Konfirmasi Salah
 								              </div>');
-						redirect('Profil/ubahsandi');
+						redirect('Profil');
 					}
 					else {
 						$hasil=$this->db->query("UPDATE `user` SET `pass_user` ='$p' WHERE `id_user` =".$id_login);
@@ -60,7 +60,7 @@ class Model_login extends CI_model {
 					                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
 					                Sandi Lama Salah
 					              </div>');
-			redirect('Profil/ubahsandi');
+			redirect('Profil');
 		}
 	}
 

@@ -17,24 +17,28 @@
        <table class="table table-bordered table-hover datatable" id="tabel_brg" role="grid">
          <thead>
          <tr>
-          <th>Foto</th>
-          <th>Nama Barang</th>
-          <th>Tipe Barang</th>
-          <th>Merk Barang</th>
-          <th>Versi Barang</th>
-          <th>Kondisi Barang</th>
-          <th>Detail</th>
+          <th style="text-align:center;">Foto</th>
+          <th style="text-align:center;">Nama Barang</th>
+          <th style="text-align:center;">Tipe Barang</th>
+          <th style="text-align:center;">Merk Barang</th>
+          <th style="text-align:center;">Versi Barang</th>
+          <th style="text-align:center;">Kondisi Barang</th>
+          <th style="text-align:center;">Detail</th>
          </tr>
        </thead>
         <tbody>
           <?php foreach($data->result() as $barang){?>
               <tr class="odd gradeX">
                 <td width="5%"><img src="<?php echo base_url()?>assets/foto_brg/<?php echo $barang->foto_brg; ?>" width="100%"></td>
-                <td><?php echo $barang->nama_brg; ?></td>
-                <td><?php echo $barang->nama_tipe; ?></td>
-                <td><?php echo $barang->merk_brg; ?></td>
-                <td><?php echo $barang->versi_brg; ?></td>
-								<td><?php echo $barang->kondisi_brg; ?></td>
+                <td style="text-align:center;"><?php echo $barang->nama_brg; ?></td>
+                <td style="text-align:center;"><?php echo $barang->nama_tipe; ?></td>
+                <td style="text-align:center;"><?php echo $barang->merk_brg; ?></td>
+                <td style="text-align:center;"><?php echo $barang->versi_brg; ?></td>
+								<td style="text-align:center;"><?php echo $barang->kondisi_brg; ?></td>
+                <td style="text-align:center;">
+                <button type="button" name="view" class="btn btn-info btn-xs btn-flat view_data" id="<?php echo $barang->id_brg; ?>"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button> |
+                <button type="button" name="edit" class="btn btn-warning btn-xs btn-flat edit_data" id="<?php echo $barang->id_brg; ?>"><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>
+              </td>
               </tr>
 					<?php }?>
         </tbody>
