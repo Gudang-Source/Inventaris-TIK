@@ -28,7 +28,7 @@
         <div class="form-group">
           <label for="inputMerkbrg" class="col-sm-2 control-label">Merk Barang</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="inputMerkbrg" name="merkbrg" placeholder="Merk" required>
+            <input type="text" class="form-control" id="inputMerkbrg" name="merkbrg" placeholder="Merk">
           </div>
         </div>
 

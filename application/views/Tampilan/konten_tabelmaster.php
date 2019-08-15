@@ -25,7 +25,7 @@
           <th style="text-align: center">Tipe Barang</th>
           <th style="text-align: center">Merk Barang</th>
           <th style="text-align: center">Versi Barang</th>
-          <th style="text-align: center">Umur Efektif Barang</th>
+          <th style="text-align: center">Umur Efektif Barang(Bulan)</th>
           <th style="text-align: center">Aksi</th>
          </tr>
        </thead>

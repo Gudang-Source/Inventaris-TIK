@@ -98,9 +98,9 @@
     <div class="row">
       <div class="col-md-6">
       <div class="form-group">
-        <label for="inputUmur" class="col-sm-4 control-label">Umur Barang Efektif</label>
+        <label for="inputUmur" class="col-sm-4 control-label">Umur Barang Efektif(Bulan)</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="inputUmur" name="umurbrg" readonly value="<?php echo $row->umur_master; ?> Bulan"></br>
+          <input type="text" class="form-control" id="inputUmur" name="umurbrg" readonly value="<?php echo $row->umur_master; ?>"></br>
         </div>
       </div>
     </div>

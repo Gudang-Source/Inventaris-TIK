@@ -49,7 +49,7 @@
        </div>
        <div class="box-body">
          <div class="box-body chart-responsive">
-           <div class="chart" id="area-chart" style="height: 250px;">
+           <div class="chart" id="line-chart" style="height: 250px;">
            </div>
          </div>
        </div>

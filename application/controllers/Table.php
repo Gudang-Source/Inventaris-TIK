@@ -60,7 +60,7 @@ class Table extends CI_Controller {
 										<td><?php echo $hasil[0]->tanggal_masuk; ?></td>
 								</tr>
                 <tr>
-                    <td>Umur Efektif Barang</td>
+                    <td>Umur Efektif Barang(Bulan)</td>
                     <td>:</td>
                     <td><?php echo $hasil[0]->umur_brg; ?></td>
                 </tr>
@@ -97,17 +97,26 @@ class Table extends CI_Controller {
 			echo json_encode($data);
 		}
 
-		public function daftarbarang($id_brg){
-			$this->model_keamanan->getkeamanan();
-			$email_login = $this->session->userdata('Email');
-			$isi['konten'] = 'Tampilan/konten_tabelbrglainya';
-			$isi['judul'] = 'Data Barang';
-			$isi['Welcome'] = 'Data Barang';
-			$isi['sub_judul'] = '';
-			$isi['title'] = "Inventaris TIK | Barang";
-			$isi['menu'] = "Tampilan/menu/menu_nonaktif";
-			$this->load->model('model_table');
-			$isi['data'] = $this->model_table->get_daftar_brg($id_brg);
-			$this->load->view('Tampilan/tampilan_beranda',$isi);
-		}
+		// public function daftarbarang($id_brg){
+		// 	$this->model_keamanan->getkeamanan();
+		// 	$email_login = $this->session->userdata('Email');
+		// 	$isi['konten'] = 'Tampilan/konten_tabelbrglainya';
+		// 	$isi['judul'] = 'Data Barang';
+		// 	$isi['Welcome'] = 'Data Barang';
+		// 	$isi['sub_judul'] = '';
+		// 	$isi['title'] = "Inventaris TIK | Barang";
+		// 	$isi['menu'] = "Tampilan/menu/menu_nonaktif";
+		// 	$this->load->model('model_table');
+		// 	$data = $this->model_table->get_daftar_brg($id_brg);
+		// 	$isi['data'] = json_encode($data);
+		// 	$this->load->view('Tampilan/tampilan_beranda',$isi);
+		// }
+		//
+		// public function get_daftar_brg(){
+		// 	$id_brg = $this->input->post('$id_brg');
+		// 	$this->load->model('model_table');
+		// 	$data = $this->model_table->get_daftar_brg($id_brg);
+		// 	echo json_encode($data);
+		// }
+
 }

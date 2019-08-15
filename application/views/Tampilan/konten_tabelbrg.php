@@ -38,7 +38,6 @@
           <th style="text-align:center;">Merk Barang</th>
           <th style="text-align:center;">Versi Barang</th>
           <th style="text-align:center;">Kondisi Barang</th>
-          <th style="text-align:center;">Jumlah</th>
           <th style="text-align:center;">Detail</th>
          </tr>
        </thead>
@@ -63,15 +62,15 @@
          for(i=0; i<data.length; i++){
              html += '<tr>'+
                      '<td width="5%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
-                     '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
-                     '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
-                     '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
-                     '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
-                     '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
-                     '<td style="text-align:center;">'+data[i].jumlah+'</td>'+
+                     '<td>'+data[i].nama_brg+'</td>'+
+                     '<td>'+data[i].nama_tipe+'</td>'+
+                     '<td>'+data[i].merk_brg+'</td>'+
+                     '<td>'+data[i].versi_brg+'</td>'+
+                     '<td>'+data[i].kondisi_brg+'</td>'+
                      '<td style="text-align:center;">'+
-                     // '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
-                     // '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                     //'<a href="<?php echo base_url()?>Table/daftarbarang/'+data[i].id_brg+'" class="btn btn-primary btn-xs">Selengkapnya...</a>'+
+                      '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
+                      '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
                      '</td>'+
                      '</tr>';
          }

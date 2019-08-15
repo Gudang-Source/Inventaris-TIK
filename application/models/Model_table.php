@@ -4,9 +4,9 @@ class Model_table extends CI_model {
 
   public function getdatatable($tipe){
     if(!empty($tipe)){
-    $hasil=$this->db->query("SELECT *, COUNT(barang.id_tipe) AS jumlah FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.id_tipe=$tipe GROUP BY barang.nama_brg");
+    $hasil=$this->db->query("SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe WHERE barang.id_tipe=$tipe");
   }else{
-    $hasil=$this->db->query("SELECT *, COUNT(barang.id_tipe) AS jumlah FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe GROUP BY barang.nama_brg");
+    $hasil=$this->db->query("SELECT * FROM barang LEFT OUTER JOIN kategori_brg ON barang.id_tipe=kategori_brg.id_tipe");
   }
     return $hasil->result();
   }

@@ -416,9 +416,6 @@
 <!-- View Barang -->
 <script type="text/javascript">
 $(document).ready(function(){
-
-    $('#tabel_brg').dataTable();
-
     tampil_data_barang();   //pemanggilan fungsi tampil tipe.
 
     $('#tabel_barang').dataTable();
@@ -435,15 +432,16 @@ $(document).ready(function(){
                 var i;
                 for(i=0; i<data.length; i++){
                     html += '<tr>'+
-                            '<td width="5%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
-                            '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
-                            '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
-                            '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
-                            '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
-                            '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
-                            '<td style="text-align:center;">'+data[i].jumlah+'</td>'+
+                            '<td width="5%" style="text-align:center;">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
+                            '<td>'+data[i].nama_brg+'</td>'+
+                            '<td>'+data[i].nama_tipe+'</td>'+
+                            '<td>'+data[i].merk_brg+'</td>'+
+                            '<td>'+data[i].versi_brg+'</td>'+
+                            '<td>'+data[i].kondisi_brg+'</td>'+
                             '<td style="text-align:center;">'+
-                            '<a href="<?php echo base_url()?>Table/daftarbarang/'+data[i].id_brg+'/'+data[i].nama_brg+'" class="btn btn-primary btn-xs">Selengkapnya...</a>'+
+                            //'<a href="<?php echo base_url()?>Table/daftarbarang/'+data[i].id_brg+'/'+data[i].nama_brg+'" class="btn btn-primary btn-xs">Selengkapnya...</a>'+
+                            '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button> | '+' '+
+                            '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
                             '</td>'+
                             '</tr>';
                 }
@@ -454,7 +452,7 @@ $(document).ready(function(){
     }
 
 // Detail Barang
-    $('.view_data').click(function(){
+    $('#show_barang').on('click','.view_data',function(){
       var id_barang = $(this).attr("id");
       $.ajax({
         type : "POST",
@@ -468,7 +466,7 @@ $(document).ready(function(){
     });
 
     //GET UPDATE
-    $('.edit_data').click(function(){
+    $('#show_barang').on('click','.edit_data',function(){
         var id=$(this).attr('id');
         $.ajax({
             type : "GET",
@@ -487,21 +485,6 @@ $(document).ready(function(){
         });
         return false;
     });
-    //  function getTipe(){
-    //    var tipe = $("#tipe").val();
-    //    $.ajax({
-    //      type:"POST",
-    //      url: "<?php echo base_url()?>Table/get_tipe_kode",
-    //      data: {tipe:tipe},
-    //      dataType : "html",
-    //      success:function(msg){
-    //        $('#show_barang').html(msg);
-    //      },
-    //      error:function(){
-    //        alert("Search failed");
-    //      }
-    // });
-    // }
   });
 </script>
 
@@ -537,12 +520,12 @@ $('.timepicker').timepicker({
                     var i;
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
-                                '<td width="5%">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_master+'" width="100%">'+'</td>'+
+                                '<td width="5%" style="text-align:center;">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_master+'" width="100%">'+'</td>'+
                                 '<td style="text-align:center;">'+data[i].nama_master+'</td>'+
                                 '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
                                 '<td style="text-align:center;">'+data[i].merk_master+'</td>'+
                                 '<td style="text-align:center;">'+data[i].versi_master+'</td>'+
-                                '<td style="text-align:center;">'+data[i].umur_master+' Bulan</td>'+
+                                '<td style="text-align:center;">'+data[i].umur_master+'</td>'+
                                 '<td style="text-align:center;">'+
                                 '<div class="btn-group">'+
                                   '<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-edit"></i>'+
@@ -578,8 +561,8 @@ $('.timepicker').timepicker({
  $(function () {
    "use strict";
    // AREA CHART
-   var area = new Morris.Area({
-     element: 'area-chart',
+   var area = new Morris.Line({
+     element: 'line-chart',
      resize: true,
      data: <?php echo $jumlah_brg?>,
      xkey: 'tanggal_masuk',
@@ -601,5 +584,78 @@ $('.timepicker').timepicker({
    });
  });
 </script>
+
+<!-- View Barang -->
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+    tampil_data_brng();   //pemanggilan fungsi tampil tipe.
+
+    $('#tabel_brng').dataTable();
+
+    //fungsi tampil tipe
+    function tampil_data_brng(){
+        $.ajax({
+            type  : 'ajax',
+            url   : "<?php echo base_url()?>Table/get_daftar_brg/",
+            async : false,
+            data : 'json',
+            success : function(data){
+                var html = '';
+                var i;
+                for(i=0; i<data.length; i++){
+                    html += '<tr>'+
+                            '<td width="5%" style="text-align:center;">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_brg+'" width="100%">'+'</td>'+
+                            '<td style="text-align:center;">'+data[i].nama_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
+                            '<td style="text-align:center;">'+data[i].merk_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].versi_brg+'</td>'+
+                            '<td style="text-align:center;">'+data[i].kondisi_brg+'</td>'+
+                            '<td style="text-align:center;">'+
+                            '<button type="button" name="view" class="btn btn-success btn-xs view_data" id="'+data[i].id_brg+'"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button>'+' '+
+                            '<a href="javascript:;" name="edit" class="btn btn-primary btn-xs edit_data" id="'+data[i].id_brg+'""><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>'+
+                            '</tr>';
+                }
+                $('#show_brng').html(html);
+            }
+
+        });
+    }
+
+// Detail Barang
+    $('#show_brng').on('click','view_data',function(){
+      var id_barang = $(this).attr("id");
+      $.ajax({
+        type : "POST",
+        url : "<?php echo base_url('table/getbarangkode')?>",
+        data : {id_barang:id_barang},
+        success:function(data){
+          $('#show_detail').html(data);
+          $('#modal_view').modal("show");
+        }
+      });
+    });
+
+    //GET UPDATE
+    $('#show_brng').on('click','edit_data',function(){
+        var id=$(this).attr('id');
+        $.ajax({
+            type : "GET",
+            url  : '<?php echo base_url()?>Table/get_barang_kode',
+            dataType : 'json',
+            data : {id:id},
+            success: function(data){
+                $.each(data,function(kondisi_brg, lokasi_brg, ket){
+                    $('#modal_editbarang').modal('show');
+                    $('[name="id"]').val(id);
+                    $('[name="lokasi_brg"]').val(data.lokasi_brg);
+                    $('[name="textket"]').val(data.ket);
+
+                });
+            }
+        });
+        return false;
+    });
+  });
+</script> -->
 </body>
 </html>

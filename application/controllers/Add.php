@@ -44,7 +44,19 @@ class Add extends CI_Controller {
 				echo "Gambar Gagal Upload. Gambar harus bertipe gif|jpg|png|jpeg|bmp";
 			}
 		}
+		else{
+			$gbr = $this->upload->do_upload('filefoto');
+			$gambar=$gbr['file_name']; //Mengambil file name dari gambar yang diupload
+			$this->Model_table->insertdatatablemaster($gambar);
+			$this->session->set_flashdata('info',
+					'<div class="alert alert-success alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+							<h4><i class="icon fa fa-check"></i> Success</h4>
+							Data Berhasil Di Tambah
+						</div>');
+			redirect('Master');
 	}
+}
 
 	public function tambahbarang(){
 				$this->model_keamanan->getkeamanan();

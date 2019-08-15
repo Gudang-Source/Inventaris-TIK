@@ -26,9 +26,8 @@
           <th style="text-align:center;">Detail</th>
          </tr>
        </thead>
-        <tbody>
-          <?php foreach($data->result() as $barang){?>
-              <tr class="odd gradeX">
+        <tbody id="show_brng">
+              <!-- <tr class="odd gradeX">
                 <td width="5%"><img src="<?php echo base_url()?>assets/foto_brg/<?php echo $barang->foto_brg; ?>" width="100%"></td>
                 <td style="text-align:center;"><?php echo $barang->nama_brg; ?></td>
                 <td style="text-align:center;"><?php echo $barang->nama_tipe; ?></td>
@@ -39,8 +38,7 @@
                 <button type="button" name="view" class="btn btn-info btn-xs btn-flat view_data" id="<?php echo $barang->id_brg; ?>"><i class="fa fa-eye"></i>&nbsp&nbspLihat</button> |
                 <button type="button" name="edit" class="btn btn-warning btn-xs btn-flat edit_data" id="<?php echo $barang->id_brg; ?>"><i class="fa fa-edit"></i>&nbsp&nbspEdit</button>
               </td>
-              </tr>
-					<?php }?>
+              </tr> -->
         </tbody>
       </table>
     </div>
