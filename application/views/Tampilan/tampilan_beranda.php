@@ -27,7 +27,7 @@
                 background-repeat: repeat;
             }
         </style> -->
-<body class="hold-transition skin-red-light sidebar-mini">
+<body class="fixed hold-transition skin-red-light sidebar-mini" style="height: auto; min-height: 100%;">
 <div class="wrapper">
   <header class="main-header">
     <!-- Logo -->
@@ -255,9 +255,6 @@
     <strong>Copyright &copy; 2019 <a href="<?php echo base_url() ?>">UPT TIK</a>.</strong> All rights
     reserved.
   </footer>
-</div>
-<div>
- &nbsp
 </div>
 
 <!-- jQuery 3 -->
