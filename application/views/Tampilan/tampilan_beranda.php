@@ -518,11 +518,11 @@ $('.timepicker').timepicker({
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
                                 '<td width="5%" style="text-align:center;">'+'<img src="<?php echo base_url()?>assets/foto_brg/'+data[i].foto_master+'" width="100%">'+'</td>'+
-                                '<td style="text-align:center;">'+data[i].nama_master+'</td>'+
-                                '<td style="text-align:center;">'+data[i].nama_tipe+'</td>'+
-                                '<td style="text-align:center;">'+data[i].merk_master+'</td>'+
-                                '<td style="text-align:center;">'+data[i].versi_master+'</td>'+
-                                '<td style="text-align:center;">'+data[i].umur_master+'</td>'+
+                                '<td>'+data[i].nama_master+'</td>'+
+                                '<td>'+data[i].nama_tipe+'</td>'+
+                                '<td>'+data[i].merk_master+'</td>'+
+                                '<td>'+data[i].versi_master+'</td>'+
+                                '<td>'+data[i].umur_master+'</td>'+
                                 '<td style="text-align:center;">'+
                                 '<div class="btn-group">'+
                                   '<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-edit"></i>'+
