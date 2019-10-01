@@ -38,15 +38,41 @@
 
 <div class="row">
 
-   <div class="col-md-12">
+   <div class="col-md-4">
      <div class="box box-danger">
        <div class="box-header with-border">
-           <i class="fa fa-th"></i><h3 class="box-title text-center">Banyak Barang yang Diterima</h3>
+           <i class="fa fa-th"></i><h3 class="box-title text-center">Data Barang yang Diterima</h3>
            <div class="box-tools pull-right">
              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
              </button>
            </div>
        </div>
+       <div class="box-body">
+         <div class="box-body chart-responsive">
+           <table class="table table-striped table-bordered">
+             <tbody>
+               <tr>
+               <td>Tipe Barang</td>
+               <td>
+                 <select class="form-control" name="tipe_brg" id="tipe_brg" required>
+                   <option value="">--pilih--</option>
+                   <option value=""></option>
+                 </select>
+               </td>
+             </tr>
+             <tr>
+               <td></td>
+               <td><button class="btn btn-primary btn-flat"><i class="fa fa-refresh" aria-hidden="true"></i> Prosses</button></td>
+             </tr>
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <div class="col-md-8">
+     <div class="box box-danger">
        <div class="box-body">
          <div class="box-body chart-responsive">
            <div class="chart" id="line-chart" style="height: 250px;">
@@ -58,13 +84,6 @@
 
    <div class="col-md-12">
      <div class="box box-danger">
-       <div class="box-header with-border">
-           <i class="fa fa-th"></i><h3 class="box-title text-center">Banyak Barang Bagus & Rusak</h3>
-           <div class="box-tools pull-right">
-             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-             </button>
-           </div>
-       </div>
        <div class="box-body">
          <div class="box-body chart-responsive">
            <div class="chart" id="donut-chart" style="height: 250px;">
