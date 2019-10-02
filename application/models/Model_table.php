@@ -164,8 +164,8 @@ class Model_table extends CI_model {
   }
 
   public function get_jumlah_brg(){
-    $hasil = $this->db->query("SELECT tanggal_masuk, COUNT(id_brg) AS jumlah FROM `barang` GROUP BY tanggal_masuk");
-    return $hasil;
+    $hasil = $this->db->query("SELECT `nama_tipe`, COUNT(id_brg) AS jumlah FROM `barang` JOIN `kategori_brg` ON `barang`.`id_tipe`=`kategori_brg`.`id_tipe` GROUP BY `nama_tipe`");
+    return $hasil->result();
   }
 
 }

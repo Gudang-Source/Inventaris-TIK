@@ -56,7 +56,8 @@
                <td>
                  <select class="form-control" name="tipe_brg" id="tipe_brg" required>
                    <option value="">--pilih--</option>
-                   <option value=""></option>
+                   <?php foreach ($data->result() as $tipe ) {
+                   echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
                  </select>
                </td>
              </tr>
@@ -75,7 +76,7 @@
      <div class="box box-danger">
        <div class="box-body">
          <div class="box-body chart-responsive">
-           <div class="chart" id="line-chart" style="height: 250px;">
+           <div class="chart" id="line-chart" style="height: 285px;">
            </div>
          </div>
        </div>
@@ -86,7 +87,7 @@
      <div class="box box-danger">
        <div class="box-body">
          <div class="box-body chart-responsive">
-           <div class="chart" id="donut-chart" style="height: 250px;">
+           <div class="chart" id="donut-chart" style="height:300px;">
            </div>
          </div>
        </div>
