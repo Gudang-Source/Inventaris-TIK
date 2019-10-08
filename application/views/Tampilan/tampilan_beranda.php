@@ -585,11 +585,10 @@ $('.timepicker').timepicker({
 <script src="<?php echo base_url() ?>assets/Highcharts-7.2.0/highcharts.js"></script>
 <script src="<?php echo base_url() ?>assets/Highcharts-7.2.0/modules/exporting.js"></script>
 <script src="<?php echo base_url() ?>assets/Highcharts-7.2.0/modules/export-data.js"></script>
-<?php foreach ($data as $result) {
-  $tipe[]=$result->nama_tipe;
-  $jumlah[]=$result->jumlah;
-}
- ?>
+<?php foreach ($banyak_brg as $result){
+  $jmlh_brg[]= (float)$result->jumlah;
+  $type[]= $result->nama_tipe;
+} ?>
 <script type="text/javascript">
 Highcharts.chart('line-chart', {
     chart: {
@@ -602,8 +601,7 @@ Highcharts.chart('line-chart', {
         text: null
     },
     xAxis: {
-        categories: [<?php echo json_encode($tipe);?>],
-        crosshair: true
+        categories: <?php echo json_encode($type);?>
     },
     yAxis: {
         min: 0,
@@ -612,22 +610,27 @@ Highcharts.chart('line-chart', {
         }
     },
     tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
+      pointFormat: 'Banyak barang: <b>{point.y:.1f}</b>'
     },
     plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
+      column: {
+        depth: 25
+      }
     },
     series: [{
-        //name: 'Tokyo',
-        data: [<?php echo json_encode($jumlah);?>]
+        name: 'Banyak barang',
+        data: <?php echo json_encode($jmlh_brg);?>,
+        dataLabels: {
+          enabled: true,
+          color: '#045396',
+          align: 'center',
+          format: '{point.y:.1f}', // one decimal
+          y: 0, // 10 pixels down from the top
+          style: {
+            fontSize: '13px',
+            fontFamily: 'Verdana, sans-serif'
+          }
+        }
     }]
 });
 Highcharts.chart('donut-chart', {
@@ -641,7 +644,7 @@ Highcharts.chart('donut-chart', {
         text: 'Banyak Barang Bagus & Rusak'
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        pointFormat: '{series.name}: <b>{point.y:.f}</b>'
     },
     plotOptions: {
         pie: {
@@ -654,7 +657,7 @@ Highcharts.chart('donut-chart', {
         }
     },
     series: [{
-        name: 'Percentage',
+        name: 'Banyak barang',
         colorByPoint: true,
         data: [{
             name: 'Bagus',

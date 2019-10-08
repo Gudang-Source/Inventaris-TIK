@@ -168,4 +168,11 @@ class Model_table extends CI_model {
     return $hasil->result();
   }
 
+  public function get_nama_tipe(){
+    $this->db->select('nama_tipe');
+    $this->db->from('kategori_brg');
+    $hasil=$this->db->get();
+    return $hasil->result();
+  }
+
 }

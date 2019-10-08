@@ -49,6 +49,7 @@
        </div>
        <div class="box-body">
          <div class="box-body chart-responsive">
+           <form id="form_tipe" method="get">
            <table class="table table-striped table-bordered">
              <tbody>
                <tr>
@@ -56,7 +57,7 @@
                <td>
                  <select class="form-control" name="tipe_brg" id="tipe_brg" required>
                    <option value="">--pilih--</option>
-                   <?php foreach ($data->result() as $tipe ) {
+                   <?php foreach ($tipe->result() as $tipe ) {
                    echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
                  </select>
                </td>
@@ -67,6 +68,7 @@
              </tr>
              </tbody>
            </table>
+           </form>
          </div>
        </div>
      </div>
@@ -76,7 +78,7 @@
      <div class="box box-danger">
        <div class="box-body">
          <div class="box-body chart-responsive">
-           <div class="chart" id="line-chart" style="height: 285px;">
+           <div class="chart" id="line-chart" style="min-width: 285px; height: 300px; margin: 0 auto">
            </div>
          </div>
        </div>
