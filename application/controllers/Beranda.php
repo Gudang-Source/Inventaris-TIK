@@ -11,12 +11,13 @@ class Beranda extends CI_Controller {
 		$isi['sub_judul'] = '';
 		$isi['title'] = "Inventaris TIK | Dashboard";
 		$isi['menu'] = "Tampilan/menu/menu_beranda";
+		$id=$this->input->get('tipe_brg');
 		$this->load->model('model_table');
 		$isi['data']		= $this->model_table->getdatatablemaster();
 		$isi['jumlah']		= $this->model_table->get_jumlah();
 		$isi['bagus']		= $this->model_table->get_bagus();
 		$isi['rusak']		= $this->model_table->get_rusak();
-		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg();
+		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg($id);
 		$isi['tipe']		= $this->model_table->getdatatipe();
 		$isi['nama_tipe']		= $this->model_table->get_nama_tipe();
 		//$isi['jumlah_brg']		= json_encode($data);

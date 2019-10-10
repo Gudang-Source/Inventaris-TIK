@@ -163,9 +163,23 @@ class Model_table extends CI_model {
     return $this->db->count_all_results();
   }
 
-  public function get_jumlah_brg(){
-    $hasil = $this->db->query("SELECT `nama_tipe`, COUNT(id_brg) AS jumlah FROM `barang` JOIN `kategori_brg` ON `barang`.`id_tipe`=`kategori_brg`.`id_tipe` GROUP BY `nama_tipe`");
-    return $hasil->result();
+  public function get_jumlah_brg($id){
+      if(empty($id)){
+        $hasil = $this->db->query("SELECT `nama_tipe`, COUNT(id_brg) AS jumlah FROM `barang` JOIN `kategori_brg` ON `barang`.`id_tipe`=`kategori_brg`.`id_tipe` GROUP BY `nama_tipe`");
+        return $hasil->result();
+      }
+      else{
+          $hsl=$this->db->query("SELECT `id_tipe` FROM `barang` WHERE id_tipe=".$id)->result();
+          if(!empty($hsl)){
+            $hasil=$this->db->query("SELECT `nama_brg` AS nama_tipe, COUNT(id_brg) AS jumlah FROM `barang` WHERE `id_tipe`=".$id);
+            return $hasil->result();
+          }
+          else{
+            echo "<script>window.alert('Tipe Barang Tidak Ada Di Barang!')</script>";
+            echo "<meta http-equiv='refresh' content='0;url=http://localhost/Inventaris-TIK/Beranda'>";
+           }
+    }
+    
   }
 
   public function get_nama_tipe(){

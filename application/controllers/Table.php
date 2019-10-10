@@ -15,6 +15,7 @@ class Table extends CI_Controller {
 		$tipe=$this->input->get('tipe');
 		$isi['data'] = $this->model_table->getdatatable($tipe);
 		$isi['tipe'] = $this->model_table->gettabletipe();
+		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 

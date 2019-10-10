@@ -586,9 +586,9 @@ $('.timepicker').timepicker({
 <script src="<?php echo base_url() ?>assets/Highcharts-7.2.0/modules/exporting.js"></script>
 <script src="<?php echo base_url() ?>assets/Highcharts-7.2.0/modules/export-data.js"></script>
 <?php foreach ($banyak_brg as $result){
-  $jmlh_brg[]= (float)$result->jumlah;
-  $type[]= $result->nama_tipe;
-} ?>
+          $jmlh_brg[]= (float)$result->jumlah;
+          $type[]= $result->nama_tipe;
+        } ?>
 <script type="text/javascript">
 Highcharts.chart('line-chart', {
     chart: {

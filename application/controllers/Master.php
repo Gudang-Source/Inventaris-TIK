@@ -12,6 +12,8 @@ class Master extends CI_Controller {
 		$isi['title'] = "Inventaris TIK | Master";
 		$isi['menu'] = "Tampilan/menu/menu_tabelmaster";
 		//$isi['data']		= $this->model_table->getdatatablemaster();
+		$this->load->model('model_table');
+		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
@@ -47,6 +49,7 @@ class Master extends CI_Controller {
 		$isi['title'] = "Inventaris TIK | Add Barang";
 		$this->load->model('model_table');
 		$isi['data']		= $this->model_table->getdatamaster($id_master);
+		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg();
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
