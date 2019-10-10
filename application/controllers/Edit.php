@@ -15,7 +15,8 @@ class Edit extends CI_Controller {
     $isi['sub_judul'] = '';
     $isi['menu'] = "Tampilan/menu/menu_edit";
     $isi['title'] = "Inventaris TIK | Edit Tipe Barang";
-    $isi['banyak_brg'] = $this->model_table->get_jumlah_brg();
+    $id=$this->input->get('tipe_brg');
+    $isi['banyak_brg'] = $this->model_table->get_jumlah_brg($id);
     $this->load->view('Tampilan/tampilan_beranda',$isi);
   }
 

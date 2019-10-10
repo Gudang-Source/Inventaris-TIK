@@ -18,8 +18,8 @@ class Beranda extends CI_Controller {
 		$isi['bagus']		= $this->model_table->get_bagus();
 		$isi['rusak']		= $this->model_table->get_rusak();
 		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg($id);
-		$isi['tipe']		= $this->model_table->getdatatipe();
-		$isi['nama_tipe']		= $this->model_table->get_nama_tipe();
+		//$isi['tipe']		= $this->model_table->getdatatipe();
+		$isi['tipe']		= $this->model_table->get_nama_tipe();
 		//$isi['jumlah_brg']		= json_encode($data);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}

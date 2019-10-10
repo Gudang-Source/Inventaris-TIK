@@ -12,7 +12,9 @@ class Add extends CI_Controller {
 		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
 		$isi['title'] = "Inventaris TIK | Add Barang";
 		$this->load->model('model_table');
+		$id=$this->input->get('tipe_brg');
 		$isi['data']		= $this->model_table->getdatatipe();
+		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg($id);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 

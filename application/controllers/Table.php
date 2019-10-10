@@ -13,9 +13,10 @@ class Table extends CI_Controller {
 		$isi['menu'] = "Tampilan/menu/menu_tabel";
 		$this->load->model('model_table');
 		$tipe=$this->input->get('tipe');
+		$id=$this->input->get('tipe_brg');
 		$isi['data'] = $this->model_table->getdatatable($tipe);
 		$isi['tipe'] = $this->model_table->gettabletipe();
-		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg();
+		$isi['banyak_brg'] = $this->model_table->get_jumlah_brg($id);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 

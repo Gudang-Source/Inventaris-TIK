@@ -183,10 +183,8 @@ class Model_table extends CI_model {
   }
 
   public function get_nama_tipe(){
-    $this->db->select('nama_tipe');
-    $this->db->from('kategori_brg');
-    $hasil=$this->db->get();
-    return $hasil->result();
+    $hasil=$this->db->query("SELECT `nama_tipe`, `barang`.`id_tipe` FROM `barang` JOIN `kategori_brg` ON `barang`.`id_tipe`=`kategori_brg`.`id_tipe` GROUP BY `nama_tipe");
+    return $hasil;
   }
 
 }

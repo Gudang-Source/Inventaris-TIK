@@ -57,6 +57,7 @@
                <td>
                  <select class="form-control" name="tipe_brg" id="tipe_brg" required>
                    <option value="">--pilih--</option>
+                   <option value="0">Semua</option>
                    <?php foreach ($tipe->result() as $tipe ) {
                    echo "<option value='".$tipe->id_tipe."'>".$tipe->nama_tipe."</option>";}?>
                  </select>

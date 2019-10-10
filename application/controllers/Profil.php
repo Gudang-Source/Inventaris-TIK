@@ -12,7 +12,10 @@ class Profil extends CI_Controller {
 		$isi['menu'] = "Tampilan/menu/menu_nonaktif";
 		$isi['title'] = "Inventaris TIK | Profil";
 		$this->load->model('model_login');
+		$this->load->model('model_table');
 		$isi['data'] = $this->model_login->getdatauser();
+		$id=$this->input->get('tipe_brg');
+    $isi['banyak_brg'] = $this->model_table->get_jumlah_brg($id);
 		$this->load->view('Tampilan/tampilan_beranda',$isi);
 	}
 
