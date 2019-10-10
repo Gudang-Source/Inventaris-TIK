@@ -175,7 +175,7 @@ class Model_table extends CI_model {
             return $hasil->result();
           }
           else{
-            echo "<script>window.alert('Tipe Barang Tidak Ada Di Barang!')</script>";
+            echo "<script>window.alert('Tipe Tidak Ada Pada Tabel Barang!')</script>";
             echo "<meta http-equiv='refresh' content='0;url=http://localhost/Inventaris-TIK/Beranda'>";
            }
     }
